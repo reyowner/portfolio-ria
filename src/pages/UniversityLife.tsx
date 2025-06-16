@@ -61,12 +61,18 @@ const UniversityLife = () => {
       <Navigation />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-200 via-indigo-200 to-purple-200 text-gray-800 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-gradient-to-r from-gray-800 via-slate-800 to-gray-800 text-white py-12 md:py-16 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-16 md:w-20 h-16 md:h-20 bg-sky-400/20 rounded-full animate-pulse shadow-lg shadow-sky-400/30"></div>
+          <div className="absolute bottom-10 right-10 w-12 md:w-16 h-12 md:h-16 bg-lavender-400/20 rounded-full animate-bounce shadow-lg shadow-lavender-400/30"></div>
+          <div className="absolute top-1/2 left-1/3 w-8 md:w-12 h-8 md:h-12 bg-mint-400/20 rounded-full animate-pulse delay-700 shadow-lg shadow-mint-400/30"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <School className="h-16 w-16 mx-auto mb-6 text-indigo-500" />
-            <h1 className="text-4xl font-bold mb-4 text-gray-800">University Life Experiences</h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <School className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 md:mb-6 text-sky-400 drop-shadow-lg" />
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">University Life Experiences</h1>
+            <p className="text-base md:text-xl text-gray-300 max-w-3xl mx-auto">
               The memorable moments, friendships, and experiences that have shaped my college journey at PUP
             </p>
           </div>
@@ -74,28 +80,28 @@ const UniversityLife = () => {
       </div>
 
       {/* Life Experiences Gallery */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
-          <Coffee className="h-12 w-12 mx-auto text-salmon mb-4" />
-          <h2 className="text-3xl font-bold text-white mb-4">Campus Life Moments</h2>
-          <p className="text-lg text-gray-300">Visual journey through my university experiences</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="text-center mb-8 md:mb-12">
+          <Coffee className="h-8 w-8 md:h-12 md:w-12 mx-auto text-lavender-400 mb-3 md:mb-4" />
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Campus Life Moments</h2>
+          <p className="text-base md:text-lg text-gray-300">Visual journey through my university experiences</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
           {lifeExperiences.map((experience, index) => (
             <div
               key={index}
-              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border-l-4 border-golden"
+              className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30"
             >
               <img
                 src={`https://images.unsplash.com/${experience.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
                 alt={experience.title}
-                className="w-full h-64 object-cover"
+                className="w-full h-48 md:h-64 object-cover"
               />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3">{experience.title}</h3>
-                <p className="text-gray-300 mb-4">{experience.description}</p>
-                <p className="text-sm text-gray-400 italic border-l-4 border-coral pl-4">{experience.caption}</p>
+              <div className="p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">{experience.title}</h3>
+                <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed">{experience.description}</p>
+                <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-3">{experience.caption}</p>
               </div>
             </div>
           ))}
@@ -103,22 +109,22 @@ const UniversityLife = () => {
       </div>
 
       {/* Memorable Moments */}
-      <div className="bg-gray-800 py-16">
+      <div className="bg-gray-800/50 backdrop-blur-sm py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Star className="h-12 w-12 mx-auto text-golden mb-4" />
-            <h2 className="text-3xl font-bold text-white mb-4">Memorable Moments</h2>
-            <p className="text-lg text-gray-300">Special memories that will stay with me forever</p>
+          <div className="text-center mb-8 md:mb-12">
+            <Star className="h-8 w-8 md:h-12 md:w-12 mx-auto text-rose-400 mb-3 md:mb-4" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Memorable Moments</h2>
+            <p className="text-base md:text-lg text-gray-300">Special memories that will stay with me forever</p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             {memorable_moments.map((moment, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-r from-coral/10 to-golden/10 bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-salmon"
+                className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 border border-gray-700/50 hover:border-rose-400/30"
               >
-                <h3 className="text-2xl font-bold text-white mb-4">{moment.title}</h3>
-                <p className="text-gray-300 text-lg leading-relaxed">{moment.description}</p>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">{moment.title}</h3>
+                <p className="text-base md:text-lg text-gray-300 leading-relaxed">{moment.description}</p>
               </div>
             ))}
           </div>
@@ -126,15 +132,15 @@ const UniversityLife = () => {
       </div>
 
       {/* University Culture & Values */}
-      <div className="bg-gray-900 py-16">
+      <div className="bg-gray-900 py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Users className="h-12 w-12 mx-auto text-vibrant mb-4" />
-            <h2 className="text-3xl font-bold text-white mb-4">PUP Values I've Embraced</h2>
-            <p className="text-lg text-gray-300">The institutional values that have shaped my character</p>
+          <div className="text-center mb-8 md:mb-12">
+            <Users className="h-8 w-8 md:h-12 md:w-12 mx-auto text-mint-400 mb-3 md:mb-4" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">PUP Values I've Embraced</h2>
+            <p className="text-base md:text-lg text-gray-300">The institutional values that have shaped my character</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {[
               {
                 value: "Excellence",
@@ -142,49 +148,51 @@ const UniversityLife = () => {
                   "Striving for academic excellence in all my coursework and maintaining high standards in everything I do.",
                 example:
                   "Consistently earning high grades and seeking to exceed expectations in assignments and projects.",
-                color: "border-vibrant",
+                color: "rose",
               },
               {
                 value: "Integrity",
                 description: "Upholding honesty and ethical behavior in all academic and personal endeavors.",
                 example: "Always citing sources properly in research and being truthful in all academic work.",
-                color: "border-coral",
+                color: "lavender",
               },
               {
                 value: "Nationalism",
                 description:
                   "Developing love for country through studying Philippine history and understanding our cultural heritage.",
                 example: "Creating lesson plans that highlight Filipino achievements and promoting national pride.",
-                color: "border-golden",
+                color: "sky",
               },
               {
                 value: "Spirituality",
                 description: "Recognizing the importance of spiritual growth alongside academic development.",
                 example: "Participating in campus ministry activities and maintaining personal spiritual practices.",
-                color: "border-salmon",
+                color: "mint",
               },
               {
                 value: "Social Responsibility",
                 description: "Understanding my role as a future educator in serving the community and society.",
                 example: "Volunteering in community teaching programs and environmental conservation efforts.",
-                color: "border-vibrant",
+                color: "peach",
               },
               {
                 value: "Innovation",
                 description: "Embracing new teaching methods and technologies to enhance learning experiences.",
                 example: "Learning to use digital tools and innovative pedagogical approaches in my practice teaching.",
-                color: "border-coral",
+                color: "sage",
               },
             ].map((item, index) => (
               <div
                 key={index}
-                className={`bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 ${item.color}`}
+                className={`bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl hover:shadow-${item.color}-500/20 transition-all duration-300 border border-gray-700/50 hover:border-${item.color}-400/30 hover:scale-105`}
               >
-                <h3 className="text-xl font-bold text-vibrant mb-3">{item.value}</h3>
-                <p className="text-gray-300 mb-4">{item.description}</p>
-                <div className="bg-coral/10 p-3 rounded-lg border border-coral/20">
-                  <p className="text-sm text-gray-300">
-                    <strong>How I apply it:</strong> {item.example}
+                <h3 className={`text-lg md:text-xl font-bold text-${item.color}-300 mb-2 md:mb-3`}>{item.value}</h3>
+                <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed">{item.description}</p>
+                <div
+                  className={`bg-gradient-to-r from-${item.color}-500/20 to-${item.color}-400/20 p-3 rounded-lg border border-${item.color}-400/30 backdrop-blur-sm`}
+                >
+                  <p className="text-xs md:text-sm text-gray-300">
+                    <strong className={`text-${item.color}-300`}>How I apply it:</strong> {item.example}
                   </p>
                 </div>
               </div>

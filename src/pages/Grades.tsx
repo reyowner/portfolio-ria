@@ -1,5 +1,5 @@
 import Navigation from "../components/Navigation"
-import { FileText, TrendingUp } from "lucide-react"
+import { FileText, TrendingUp, Award, BookOpen } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -169,38 +169,38 @@ const Grades = () => {
 
         {/* Overall GPA Summary */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
-          <Card className="bg-gray-800/80 backdrop-blur-sm border-peach-400/30 shadow-xl shadow-peach-500/10">
-            <CardHeader className="text-center p-4 md:p-6">
-              <CardTitle className="text-base md:text-lg text-white">Current GPA</CardTitle>
-              <CardDescription className="text-sm md:text-base text-gray-400">Completed Semesters</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center p-4 md:p-6">
-              <div className="text-3xl md:text-4xl font-bold text-peach-300 mb-2">3.86</div>
-              <div className="text-xs md:text-sm text-gray-400">Excellent Standing</div>
-            </CardContent>
-          </Card>
+          <div className="bg-gray-800/80 backdrop-blur-sm p-4 md:p-6 rounded-xl md:rounded-2xl border border-gray-700/50 hover:border-lavender-400/30 transition-all duration-300 shadow-xl shadow-lavender-500/10">
+            <div className="flex items-center justify-between mb-2 md:mb-3">
+              <h3 className="text-lg md:text-xl font-bold text-white">Perfect Grades</h3>
+              <div className="bg-gradient-to-r from-lavender-500/20 to-lilac-500/20 p-2 md:p-3 rounded-lg">
+                <Award className="h-5 w-5 md:h-6 md:w-6 text-lavender-400" />
+              </div>
+            </div>
+            <p className="text-2xl md:text-3xl font-bold text-lavender-300 mb-1 md:mb-2">25</p>
+            <p className="text-sm md:text-base text-gray-400">Number of 1.00 grades achieved across all semesters</p>
+          </div>
 
-          <Card className="bg-gray-800/80 backdrop-blur-sm border-coral-400/30 shadow-xl shadow-coral-500/10">
-            <CardHeader className="text-center p-4 md:p-6">
-              <CardTitle className="text-base md:text-lg text-white">Total Units</CardTitle>
-              <CardDescription className="text-sm md:text-base text-gray-400">Completed Credits</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center p-4 md:p-6">
-              <div className="text-3xl md:text-4xl font-bold text-coral-300 mb-2">85</div>
-              <div className="text-xs md:text-sm text-gray-400">Units Earned</div>
-            </CardContent>
-          </Card>
+          <div className="bg-gray-800/80 backdrop-blur-sm p-4 md:p-6 rounded-xl md:rounded-2xl border border-gray-700/50 hover:border-peach-400/30 transition-all duration-300 shadow-xl shadow-peach-500/10">
+            <div className="flex items-center justify-between mb-2 md:mb-3">
+              <h3 className="text-lg md:text-xl font-bold text-white">Units Completed</h3>
+              <div className="bg-gradient-to-r from-peach-500/20 to-coral-500/20 p-2 md:p-3 rounded-lg">
+                <BookOpen className="h-5 w-5 md:h-6 md:w-6 text-peach-400" />
+              </div>
+            </div>
+            <p className="text-2xl md:text-3xl font-bold text-peach-300 mb-1 md:mb-2">126</p>
+            <p className="text-sm md:text-base text-gray-400">Total academic units completed so far</p>
+          </div>
 
-          <Card className="bg-gray-800/80 backdrop-blur-sm border-rose-400/30 shadow-xl shadow-rose-500/10">
-            <CardHeader className="text-center p-4 md:p-6">
-              <CardTitle className="text-base md:text-lg text-white">Progress</CardTitle>
-              <CardDescription className="text-sm md:text-base text-gray-400">Degree Completion</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center p-4 md:p-6">
-              <div className="text-2xl md:text-2xl font-bold text-rose-300 mb-2">62.5%</div>
-              <div className="text-xs md:text-sm text-gray-400">5 of 8 Semesters</div>
-            </CardContent>
-          </Card>
+          <div className="bg-gray-800/80 backdrop-blur-sm p-4 md:p-6 rounded-xl md:rounded-2xl border border-gray-700/50 hover:border-mint-400/30 transition-all duration-300 shadow-xl shadow-mint-500/10">
+            <div className="flex items-center justify-between mb-2 md:mb-3">
+              <h3 className="text-lg md:text-xl font-bold text-white">Academic Excellence</h3>
+              <div className="bg-gradient-to-r from-mint-500/20 to-sage-500/20 p-2 md:p-3 rounded-lg">
+                <TrendingUp className="h-5 w-5 md:h-6 md:w-6 text-mint-400" />
+              </div>
+            </div>
+            <p className="text-2xl md:text-3xl font-bold text-mint-300 mb-1 md:mb-2">1.09</p>
+            <p className="text-sm md:text-base text-gray-400">Best semester GPA achieved in 3rd Year</p>
+          </div>
         </div>
 
         {/* Semester Tabs */}

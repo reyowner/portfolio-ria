@@ -192,13 +192,13 @@ const Academic = () => {
                 <div className="relative group">
                   <img
                     src="/academic-journey/prof2.jpg"
-                    alt="Prof. Maria Santos"
+                    alt="Prof. Manolito San Jose"
                     className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Maria Santos</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Manolito San Jose</h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
                     He taught us courses related to Law and Governance. What stood out most about him was how he always
                     ensured we were learning—not just memorizing concepts, but understanding them. His commitment to our
@@ -251,23 +251,113 @@ const Academic = () => {
                 <div className="relative group">
                   <img
                     src="/academic-journey/prof4.jpg"
-                    alt="Prof. Sarah Johnson"
+                    alt="Prof. Junie Rosales"
                     className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Sarah Johnson</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Junie Rosales</h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    Prof. Johnson's teaching style is unique and effective. She combines traditional teaching methods with
-                    modern technology, creating an engaging learning environment. Her passion for history and social studies
-                    is contagious, and she has a way of making complex historical events relatable and interesting.
+                    As a former dean of the College of Education, her expertise in the field shines through in every class.
+                    Her intelligence and command of the subject matter make learning feel purposeful. She brings depth to
+                    discussions and presents content with clarity and authority that only years of experience can provide.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-peach-500/20 to-coral-500/20 p-3 md:p-4 rounded-lg border border-peach-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-peach-300 italic">
-                      "History isn't just about dates and events—it's about understanding the human story and learning from
-                      our past to shape a better future."
+                      "Education is not just about imparting knowledge—it's about shaping minds and building character."
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Professor 5 */}
+            <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-xl shadow-sky-500/10 overflow-hidden border border-gray-700/50 hover:border-sky-400/30 transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative group">
+                  <img
+                    src="/academic-journey/prof5.jpg"
+                    alt="Prof. Jamaica Gatan"
+                    className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-6 md:p-8 flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Jamaica Gatan</h3>
+                  <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
+                    So far, she's my favorite professor. She speaks with such wisdom and grace, and she has a soothing yet
+                    commanding voice that draws you in. She was our instructor in Technology in Teaching 2, and her mastery
+                    of the course content was very evident. Every class with her felt impactful—she's not only knowledgeable
+                    but also genuinely passionate about teaching.
+                  </p>
+                  {/* Quote */}
+                  <div className="bg-gradient-to-r from-sky-500/20 to-lavender-500/20 p-3 md:p-4 rounded-lg border border-sky-400/30 backdrop-blur-sm">
+                    <p className="text-xs md:text-sm text-sky-300 italic">
+                      "Teaching is an art that combines knowledge, passion, and the ability to connect with your students."
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Professor 6 */}
+            <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-xl shadow-sage-500/10 overflow-hidden border border-gray-700/50 hover:border-sage-400/30 transition-all duration-300 hover:shadow-2xl hover:shadow-sage-500/20">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative group">
+                  <img
+                    src="/academic-journey/prof6.jpg"
+                    alt="Prof. Carmela Asebias"
+                    className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-6 md:p-8 flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Carmela Asebias</h3>
+                  <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
+                    She taught us Foundations of Special and Inclusive Education—one of the most eye-opening subjects in
+                    our program. What I loved most was how she allowed us to discover our own approaches to inclusive
+                    education. She empowered us to think creatively and compassionately. My favorite part was when we
+                    created a music video as our midterm output—an experience that showed us how learning can be meaningful
+                    and fun at the same time.
+                  </p>
+                  {/* Quote */}
+                  <div className="bg-gradient-to-r from-sage-500/20 to-mint-500/20 p-3 md:p-4 rounded-lg border border-sage-400/30 backdrop-blur-sm">
+                    <p className="text-xs md:text-sm text-sage-300 italic">
+                      "Inclusive education is not just about accommodating differences—it's about celebrating them and
+                      creating a space where everyone can thrive."
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Professor 7 */}
+            <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-xl shadow-coral-500/10 overflow-hidden border border-gray-700/50 hover:border-coral-400/30 transition-all duration-300 hover:shadow-2xl hover:shadow-coral-500/20">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative group">
+                  <img
+                    src="/academic-journey/prof7.jpg"
+                    alt="Prof. Marlon Agoy-Agoy"
+                    className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-6 md:p-8 flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Marlon Agoy-Agoy</h3>
+                  <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
+                    He's the only professor from a minor subject that I felt compelled to include in this list—and that
+                    says a lot. He left a strong impression during my freshman year. He taught us The Life and Works of
+                    Rizal, and his mastery of the subject was impressive. It was as if he personally knew Rizal or had
+                    long conversations with him. His storytelling, depth of knowledge, and passion for the subject made
+                    the class unforgettable.
+                  </p>
+                  {/* Quote */}
+                  <div className="bg-gradient-to-r from-coral-500/20 to-rose-500/20 p-3 md:p-4 rounded-lg border border-coral-400/30 backdrop-blur-sm">
+                    <p className="text-xs md:text-sm text-coral-300 italic">
+                      "History comes alive when we understand the human stories behind the events. Let's learn from the
+                      past to shape a better future."
                     </p>
                   </div>
                 </div>

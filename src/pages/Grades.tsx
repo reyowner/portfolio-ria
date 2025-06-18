@@ -9,76 +9,89 @@ const Grades = () => {
       semester: "First Year - First Semester",
       year: "1st Year",
       sem: "1st Sem",
-      gpa: "3.75",
+      gpa: "1.18",
       status: "completed",
       subjects: [
-        { name: "Introduction to Teaching", grade: "A", units: 3 },
-        { name: "Philippine History", grade: "A-", units: 3 },
-        { name: "English Communication", grade: "A", units: 3 },
-        { name: "Mathematics in Modern World", grade: "B+", units: 3 },
-        { name: "Physical Education 1", grade: "A", units: 2 },
-        { name: "National Service Training Program 1", grade: "A", units: 3 },
+        { name: "Civic Welfare Training Service", grade: "1.00", units: 3 },
+        { name: "Understanding the Self/ Pag-unawa sa Sarili", grade: "1.25", units: 3 },
+        { name: "Readings in Philippine History/ Mga Babasahin Hinggil sa Kasaysayan ng Pilipinas", grade: "1.00", units: 3 },
+        { name: "The Contemporary World/ Ang Kasalukuyang Daigdig", grade: "1.00", units: 3 },
+        { name: "Science, Technology and Society/ Aghan, Teknolohiya, at Lipunan", grade: "1.25", units: 3 },
+        { name: "Gender and Society", grade: "1.00", units: 3 },
+        { name: "Filipinolohiya at Pambansang Kaunlaran", grade: "1.25", units: 3 },
+        { name: "Physical Activity Towards Health and Fitness 1", grade: "1.00", units: 2 },
+        { name: "Foundation of Social Studies", grade: "1.50", units: 3 },
       ],
     },
     {
       semester: "First Year - Second Semester",
       year: "1st Year",
       sem: "2nd Sem",
-      gpa: "3.85",
+      gpa: "1.21",
       status: "completed",
       subjects: [
-        { name: "Child and Adolescent Development", grade: "A", units: 3 },
-        { name: "World History", grade: "A", units: 3 },
-        { name: "Filipino Literature", grade: "A-", units: 3 },
-        { name: "Science and Society", grade: "B+", units: 3 },
-        { name: "Arts Appreciation", grade: "A", units: 3 },
-        { name: "Physical Education 2", grade: "A", units: 2 },
-        { name: "National Service Training Program 2", grade: "A", units: 3 },
+        { name: "Civic Welfare Training Service 2", grade: "1.00", units: 3 },
+        { name: "Ged. Ed. Elective 2", grade: "1.75", units: 3 },
+        { name: "Mathematics in the Modern World/ Matematika sa Makabagong Daigdig", grade: "1.50", units: 3 },
+        { name: "Purposive Communication/ Malayuning Komunikasyon", grade: "1.00", units: 3 },
+        { name: "Art Appreciation/ Pagpapahalaga sa Sining", grade: "1.00", units: 3 },
+        { name: "Ethics/ Etika", grade: "1.25", units: 3 },
+        { name: "Life and Works of Rizal/ Buhay at Mga Gawa ni Rizal", grade: "1.00", units: 3 },
+        { name: "Phyisical Activity Towards Health and Fitness 2", grade: "1.00", units: 2 },
+        { name: "Geography 1: Physical Geography", grade: "1.00", units: 3 },
       ],
     },
     {
       semester: "Second Year - First Semester",
       year: "2nd Year",
       sem: "1st Sem",
-      gpa: "3.90",
+      gpa: "1.31",
       status: "completed",
       subjects: [
-        { name: "Methods of Teaching Social Studies", grade: "A", units: 3 },
-        { name: "Curriculum Development", grade: "A", units: 3 },
-        { name: "Educational Psychology", grade: "A-", units: 3 },
-        { name: "Philippine Government and Constitution", grade: "A", units: 3 },
-        { name: "Research Methods in Education", grade: "A-", units: 3 },
-        { name: "Physical Education 3", grade: "A", units: 2 },
+        { name: "The Child and Adolescent Learner and Learning Principles", grade: "1.25", units: 3 },
+        { name: "The Teaching Profession", grade: "1.75", units: 3 },
+        { name: "Ged. Ed. Elective 3", grade: "1.25", units: 3 },
+        { name: "Physical Activity Towards Health and Fitness 3", grade: "1.25", units: 2 },
+        { name: "Geography 2: Human Geography", grade: "1.00", units: 3 },
+        { name: "Microeconomics", grade: "1.75", units: 3 },
+        { name: "World History 1", grade: "1.00", units: 3 },
+        { name: "Socio-Cultural Anthropology", grade: "1.25", units: 3 },
+        { name: "Law-Related Studies", grade: "1.25", units: 3 },
       ],
     },
     {
       semester: "Second Year - Second Semester",
       year: "2nd Year",
       sem: "2nd Sem",
-      gpa: "3.88",
+      gpa: "1.19",
       status: "completed",
       subjects: [
-        { name: "Assessment in Learning 1", grade: "A", units: 3 },
-        { name: "Asian History", grade: "A-", units: 3 },
-        { name: "Sociology and Anthropology", grade: "A", units: 3 },
-        { name: "Economics for Social Studies Teachers", grade: "B+", units: 3 },
-        { name: "Technology for Teaching and Learning 1", grade: "A", units: 3 },
-        { name: "Physical Education 4", grade: "A", units: 2 },
+        { name: "Technology for Teaching and Learning 1", grade: "1.25", units: 3 },
+        { name: "The Teacher and the Community, School Culture and Organizational Leadership", grade: "1.25", units: 3 },
+        { name: "Panitikang Filipino", grade: "1.00", units: 3 },
+        { name: "Physical Activity Towards Health and Fitness", grade: "1.00", units: 2 },
+        { name: "Places and Landscape in the Changing World", grade: "1.00", units: 3 },
+        { name: "Geography 3: Urban Geography", grade: "1.50", units: 3 },
+        { name: "Macroeconomics", grade: "1.25", units: 3 },
+        { name: "World History 2", grade: "1.00", units: 3 },
+        { name: "Asian Studies", grade: "1.25", units: 3 },
       ],
     },
     {
       semester: "Third Year - First Semester",
       year: "3rd Year",
       sem: "1st Sem",
-      gpa: "3.92",
+      gpa: "1.09",
       status: "completed",
       subjects: [
-        { name: "Assessment in Learning 2", grade: "A", units: 3 },
-        { name: "Geography of the Philippines", grade: "A", units: 3 },
-        { name: "Political Science", grade: "A-", units: 3 },
-        { name: "Technology for Teaching and Learning 2", grade: "A", units: 3 },
-        { name: "Classroom Management", grade: "A", units: 3 },
-        { name: "Elective 1: Peace Education", grade: "A", units: 3 },
+        { name: "Building and Enhancing New Literacies Across the Curriculum", grade: "1.00", units: 3 },
+        { name: "Assessment in Learning 1", grade: "1.00", units: 3 },
+        { name: "Foundation of Special and Inclusive Education", grade: "1.00", units: 3 },
+        { name: "Research in Social Studies", grade: "1.00", units: 3 },
+        { name: "Comparative Economic Planning", grade: "1.00", units: 3 },
+        { name: "Comparative Government and Politics", grade: "1.50", units: 3 },
+        { name: "Teaching Approaches in Secondary School - Social Studies", grade: "1.25", units: 3 },
+        { name: "Technology for Teaching and Learning 2", grade: "1.00", units: 3 },
       ],
     },
     {
@@ -88,12 +101,13 @@ const Grades = () => {
       gpa: "TBA",
       status: "current",
       subjects: [
-        { name: "Field Study 1", grade: "TBA", units: 3 },
-        { name: "Field Study 2", grade: "TBA", units: 3 },
-        { name: "Contemporary Issues in Social Studies", grade: "TBA", units: 3 },
-        { name: "Research in Social Studies Education", grade: "TBA", units: 3 },
-        { name: "Elective 2: Environmental Education", grade: "TBA", units: 3 },
-        { name: "Elective 3: Gender and Society", grade: "TBA", units: 3 },
+        { name: "Assessment and Evaluation in Social Studies", grade: "TBA", units: 3 },
+        { name: "Production of Social Studies Instructional Materials", grade: "TBA", units: 3 },
+        { name: "Trends and Issues in Social Studies", grade: "TBA", units: 3 },
+        { name: "Thesis Writing", grade: "TBA", units: 3 },
+        { name: "Integrative Methods in Teaching Social Studies", grade: "TBA", units: 3 },
+        { name: "Assessment in Learning 2", grade: "TBA", units: 3 },
+        { name: "The Teacher and the School Curriculum", grade: "TBA", units: 3 },
       ],
     },
     {
@@ -103,9 +117,11 @@ const Grades = () => {
       gpa: "TBA",
       status: "upcoming",
       subjects: [
-        { name: "Practice Teaching 1", grade: "TBA", units: 6 },
-        { name: "Teaching Internship", grade: "TBA", units: 6 },
-        { name: "Seminar in Social Studies Education", grade: "TBA", units: 3 },
+        { name: "Basic of School Management and Administration", grade: "TBA", units: "TBA" },
+        { name: "Field Study 1: Observations of Learning in Actual School Environment", grade: "TBA", units: "TBA" },
+        { name: "Field Study 2: Participation in Teaching Assistantship", grade: "TBA", units: "TBA" },
+        { name: "Integrative Course in Education", grade: "TBA", units: "TBA" },
+        { name: "Property and Resources Management in Education", grade: "TBA", units: "TBA" },
       ],
     },
     {
@@ -115,10 +131,7 @@ const Grades = () => {
       gpa: "TBA",
       status: "upcoming",
       subjects: [
-        { name: "Practice Teaching 2", grade: "TBA", units: 6 },
-        { name: "Capstone Project", grade: "TBA", units: 3 },
-        { name: "Professional Ethics for Teachers", grade: "TBA", units: 3 },
-        { name: "Licensure Examination Review", grade: "TBA", units: 3 },
+        { name: "Practice Teaching/Internship", grade: "TBA", units: "TBA" },
       ],
     },
   ]
@@ -193,7 +206,7 @@ const Grades = () => {
         {/* Semester Tabs */}
         <Tabs defaultValue="year-1" className="w-full">
           {/* Year Selection */}
-          <TabsList className="grid w-full grid-cols-4 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 mb-6">
+          <TabsList className="grid w-full h-full grid-cols-4 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 mb-6">
             <TabsTrigger
               value="year-1"
               className="text-sm md:text-base data-[state=active]:bg-lavender-500/20 data-[state=active]:text-lavender-300 text-gray-400 hover:text-white transition-colors"
@@ -223,7 +236,7 @@ const Grades = () => {
           {/* Year 1 Content */}
           <TabsContent value="year-1">
             <Tabs defaultValue="semester-0" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
+              <TabsList className="grid w-full h-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
                 <TabsTrigger
                   value="semester-0"
                   className="text-sm md:text-base data-[state=active]:bg-lavender-500/20 data-[state=active]:text-lavender-300 text-gray-400 hover:text-white transition-colors"
@@ -246,7 +259,7 @@ const Grades = () => {
                           {gradeRecords[0].semester}
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Academic Performance Summary
+                          School Year 2022 - 2023
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gradient-to-r from-peach-500/20 to-coral-500/20 text-peach-300 border-peach-400/30">
@@ -291,7 +304,7 @@ const Grades = () => {
                           {gradeRecords[1].semester}
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Academic Performance Summary
+                          School Year 2022 - 2023
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gradient-to-r from-peach-500/20 to-coral-500/20 text-peach-300 border-peach-400/30">
@@ -333,7 +346,7 @@ const Grades = () => {
           {/* Year 2 Content */}
           <TabsContent value="year-2">
             <Tabs defaultValue="semester-2" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
+              <TabsList className="grid w-full h-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
                 <TabsTrigger
                   value="semester-2"
                   className="text-sm md:text-base data-[state=active]:bg-lavender-500/20 data-[state=active]:text-lavender-300 text-gray-400 hover:text-white transition-colors"
@@ -356,7 +369,7 @@ const Grades = () => {
                           {gradeRecords[2].semester}
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Academic Performance Summary
+                          School Year 2023 - 2024
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gradient-to-r from-peach-500/20 to-coral-500/20 text-peach-300 border-peach-400/30">
@@ -401,7 +414,7 @@ const Grades = () => {
                           {gradeRecords[3].semester}
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Academic Performance Summary
+                          School Year 2023 - 2024
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gradient-to-r from-peach-500/20 to-coral-500/20 text-peach-300 border-peach-400/30">
@@ -443,7 +456,7 @@ const Grades = () => {
           {/* Year 3 Content */}
           <TabsContent value="year-3">
             <Tabs defaultValue="semester-4" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
+              <TabsList className="grid w-full h-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
                 <TabsTrigger
                   value="semester-4"
                   className="text-sm md:text-base data-[state=active]:bg-lavender-500/20 data-[state=active]:text-lavender-300 text-gray-400 hover:text-white transition-colors"
@@ -466,7 +479,7 @@ const Grades = () => {
                           {gradeRecords[4].semester}
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Academic Performance Summary
+                          School Year 2024 - 2025
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gradient-to-r from-peach-500/20 to-coral-500/20 text-peach-300 border-peach-400/30">
@@ -510,11 +523,11 @@ const Grades = () => {
                         <CardTitle className="text-lg md:text-2xl text-white flex items-center gap-2 md:gap-3">
                           {gradeRecords[5].semester}
                           <span className="text-xs md:text-sm bg-sky-600/50 text-sky-300 px-2 py-1 rounded-full">
-                            Current Semester
+                            Current
                           </span>
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Ongoing Semester
+                          School Year 2024 - 2025 (Ongoing Semester)
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gradient-to-r from-sky-500/20 to-lavender-500/20 text-sky-300 border-sky-400/30">
@@ -561,7 +574,7 @@ const Grades = () => {
           {/* Year 4 Content */}
           <TabsContent value="year-4">
             <Tabs defaultValue="semester-6" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
+              <TabsList className="grid w-full h-full grid-cols-2 bg-gray-800/80 backdrop-blur-sm border border-gray-700/50">
                 <TabsTrigger
                   value="semester-6"
                   className="text-sm md:text-base data-[state=active]:bg-lavender-500/20 data-[state=active]:text-lavender-300 text-gray-400 hover:text-white transition-colors"
@@ -587,7 +600,7 @@ const Grades = () => {
                           </span>
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Upcoming Semester
+                          School Year 2025 - 2026 (Upcoming Semester)
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gray-600/20 text-gray-400 border-gray-500/30">
@@ -640,7 +653,7 @@ const Grades = () => {
                           </span>
                         </CardTitle>
                         <CardDescription className="text-sm md:text-base text-gray-400">
-                          Upcoming Semester
+                          School Year 2025 - 2026 (Upcoming Semester)
                         </CardDescription>
                       </div>
                       <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg border backdrop-blur-sm bg-gray-600/20 text-gray-400 border-gray-500/30">
@@ -700,19 +713,27 @@ const Grades = () => {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Maintain GPA above 3.8 throughout my remaining semesters</span>
+                  <span className="text-sm md:text-base">Deepen understanding of Social Studies content and pedagogy across diverse historical, political, and cultural contexts</span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Complete practice teaching with distinction</span>
+                  <span className="text-sm md:text-base">Stay committed to lifelong learning, with the primary goal of gaining meaningful knowledge and wisdom</span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Conduct original research in Social Studies education</span>
+                  <span className="text-sm md:text-base">Approach academic distinction as a bonus—not a pressure—focusing instead on holistic growth</span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Graduate with Latin honors</span>
+                  <span className="text-sm md:text-base">Successfully complete practice teaching while building authentic connections with students</span>
+                </li>
+                <li className="flex items-start">
+                  <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
+                  <span className="text-sm md:text-base">Engage in research that reflects social relevance and educational equity</span>
+                </li>
+                <li className="flex items-start">
+                  <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
+                  <span className="text-sm md:text-base">Integrate real-world issues into learning to become a socially responsive educator</span>
                 </li>
               </ul>
             </div>
@@ -722,19 +743,31 @@ const Grades = () => {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Strengthen skills in educational technology integration</span>
+                  <span className="text-sm md:text-base">Improve time management to balance academics, organizational work, and personal well-being</span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Develop more advanced classroom management techniques</span>
+                  <span className="text-sm md:text-base">Strengthen verbal and written communication, especially in delivering instruction and facilitating dialogue</span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Enhance research and publication skills</span>
+                  <span className="text-sm md:text-base">Gain more hands-on teaching experience in various educational settings (formal and informal)</span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Gain more experience in special education inclusion</span>
+                  <span className="text-sm md:text-base">Enhance familiarity with educational technology tools for instruction and assessment</span>
+                </li>
+                <li className="flex items-start">
+                  <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
+                  <span className="text-sm md:text-base">Develop confidence and clarity in public speaking and professional interactions</span>
+                </li>
+                <li className="flex items-start">
+                  <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
+                  <span className="text-sm md:text-base">Learn effective strategies in inclusive education, particularly for diverse learner needs</span>
+                </li>
+                <li className="flex items-start">
+                  <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
+                  <span className="text-sm md:text-base">Practice self-discipline in managing academic workload without burnout</span>
                 </li>
               </ul>
             </div>

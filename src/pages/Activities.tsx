@@ -34,16 +34,16 @@ const Activities = () => {
       period: "January 2025",
       description:
         "An annual orientation event for incoming students of the College of Education. As part of the Creatives Committee, I was responsible for designing and producing visual materials used in promotions and during the event. I contributed to the overall aesthetic and branding of the program, helping to create a welcoming and engaging atmosphere for the freshmen.",
-      image: "photo-1519389950473-47ba0277781c",
+      image: "/activities/co-curricular/COED-Jumpstart-2024.jpg",
       caption: "Designing visual materials for the orientation event",
     },
     {
-      title: "COEDunong 2024 Academic Contest – Instructional Material Making Contest",
+      title: "COEDunong 2024 Academic Contest - Instructional Material Making Contest",
       role: "Champion",
       period: "November 2024",
       description:
         "COEDunong is an academic competition open to students of the College of Education. In 2024, I was awarded Champion in the Instructional Material Making Contest, showcasing creativity and pedagogical skill in designing effective, learner-centered teaching materials aligned with curriculum standards.",
-      image: "photo-1498050108023-c5249f4df085",
+      image: "/activities/co-curricular/COEDunong-2024.jpg",
       caption: "Presenting my winning instructional materials",
     },
     {
@@ -52,7 +52,7 @@ const Activities = () => {
       period: "September 2024",
       description:
         "An environmental awareness event focused on the preservation and rehabilitation of the Pasig River and other bodies of water. As both an organizer and participant, I was involved in promoting sustainable practices and educating the community on how to care for our rivers through responsible waste management, conservation efforts, and civic engagement.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/Ilog-Pasiglahin.jpg",
       caption: "Leading a river cleanup activity",
     },
     {
@@ -61,7 +61,7 @@ const Activities = () => {
       period: "August 2024",
       description:
         "During this prestigious event by the College of Education, I was recognized once again as a President's Lister while also serving as one of the organizers. Being on both sides—as an awardee and as part of the organizing team—made the experience even more fulfilling, as it symbolized both recognition and service.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/COED-Awards.jpg",
       caption: "Receiving recognition at the Gawad Hiraya ceremony",
     },
     {
@@ -70,7 +70,7 @@ const Activities = () => {
       period: "June 2024",
       description:
         "I was honored to be recognized as a President's Lister during the PUP SSG's 10th Anniversary and Recognition Ceremony. This achievement reflects the hard work and perseverance I've invested in balancing both academic and personal responsibilities.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/PUP-SSG-Anniversary-and-Recognition.jpg",
       caption: "Being recognized as a President's Lister",
     },
     {
@@ -79,7 +79,7 @@ const Activities = () => {
       period: "November 2022, November 2023, November 2024",
       description:
         "The EDTALK Series is an annual webinar hosted by various organizations within PUP that highlights innovative strategies and methodologies in teaching. Attending this series consistently over the years has deepened my understanding of pedagogical practices and affirmed my commitment to becoming a more dynamic and responsive future educator.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/EDTALK-Series-Webinar.jpg",
       caption: "Learning from educational experts in the webinar series",
     },
     {
@@ -88,7 +88,7 @@ const Activities = () => {
       period: "May-June 2024",
       description:
         "Completed an online course under UPOU's MODeL platform focused on foundational concepts and practical applications of technology integration in education. The course emphasized the role of digital tools in enhancing teaching and learning experiences, particularly in flexible and distance learning environments.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/UPOU-TTL2.jpg",
       caption: "Learning from educational experts in the webinar series",
     },
     {
@@ -97,7 +97,7 @@ const Activities = () => {
       period: "July 2023",
       description:
         "This outreach program aimed to raise awareness about sex, gender identity, and the challenges faced by today's youth. As a member of the Program Committee, I helped in planning and organizing activities that encouraged safe and inclusive conversations around gender and puberty—highlighting the importance of education in dismantling stigma.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/NSTP-CWTS-Outreach-Program.jpg",
       caption: "Facilitating a workshop on gender identity",
     },
     {
@@ -106,7 +106,7 @@ const Activities = () => {
       period: "April 2023",
       description:
         "As part of our CWTS class requirement in 2023, we participated in the 360Pilipinas Earth Day Celebration, a campaign that promotes a cleaner and greener environment. Though initially a class task, the experience opened our eyes to the importance of collective action in addressing environmental issues.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/360Pilipinas-Earth-Day.jpg",
       caption: "Participating in Earth Day activities",
     },
     {
@@ -115,7 +115,7 @@ const Activities = () => {
       period: "March 2023",
       description:
         "An orientation event designed specifically for the freshmen of the Polytechnic University of the Philippines – College of Education. As a participant, this event served as my official welcome to the college, giving me an overview of what to expect in my academic journey. It introduced me to the values, programs, and culture of the College of Education, and helped me feel more grounded and prepared as I began my path toward becoming a future educator.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/co-curricular/Jumpstart-2022.jpg",
       caption: "Attending my first COED orientation",
     },
   ]
@@ -127,7 +127,7 @@ const Activities = () => {
       period: "2024 - Present",
       description:
         "Contributes to the official student publication of the College of Education by capturing key moments during events, producing creative layouts, and designing visual content that supports journalistic storytelling and student-led publication releases.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/extra-curricular/Limestone.jpg",
       caption: "Creating visual content for student publications",
       impact: "Enhanced visual storytelling in student publications"
     },
@@ -137,7 +137,7 @@ const Activities = () => {
       period: "2024 - Present",
       description:
         "Responsible for maintaining the organization's public presence through strategic communications, publication materials, and engagement across social media platforms. Ensures effective promotion of events and strengthens the organization's branding and visibility within and beyond the department.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/extra-curricular/BEST-2024.jpg",
       caption: "Managing organization's public relations and communications",
       impact: "Improved organization's social media presence and engagement"
     },
@@ -147,7 +147,7 @@ const Activities = () => {
       period: "2024 - Present",
       description:
         "Handles budget proposals, financial documentation, and funding strategies for guild activities. Supports the organization in implementing educational and cultural programs aligned with the goals of the Social Studies discipline.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/extra-curricular/Social-Studies-Guild.jpg",
       caption: "Managing financial aspects of guild activities",
       impact: "Streamlined financial processes for guild activities"
     },
@@ -157,7 +157,7 @@ const Activities = () => {
       period: "2023 - 2024",
       description:
         "Actively participated as a member of the department's mother organization, which aims to unify and support students under the Bachelor of Elementary and Secondary Teaching program through academic, leadership, and community-building initiatives.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/extra-curricular/BEST-2023.jpg",
       caption: "Participating in BEST Society activities",
       impact: "Contributed to academic and leadership development initiatives"
     },
@@ -167,7 +167,7 @@ const Activities = () => {
       period: "2023 - 2024",
       description:
         "Served as a junior officer under the College of Education Student Council, contributing to student welfare initiatives, assisting in various council-led events, and participating in decision-making processes that addressed student concerns and campus activities.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/extra-curricular/PUP-COED-SC.jpg",
       caption: "Contributing to student council initiatives",
       impact: "Enhanced student welfare and campus activities"
     },
@@ -180,7 +180,7 @@ const Activities = () => {
       period: "May - June 2025",
       description:
         "Served as a tutor in the Tara, Basa! literacy program, which supports the reading development of early-grade learners. Facilitated reading sessions, monitored learner progress, and provided educational support to underserved communities.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/Tara-Basa.jpg",
       caption: "Facilitating reading sessions for early-grade learners",
     },
     {
@@ -189,7 +189,7 @@ const Activities = () => {
       period: "March 2025",
       description:
         "Led the creative direction and designed event materials for the BEST Society's general assembly. The event introduced the organization's goals and officers while strengthening bonds among members through engaging activities.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/GTKY.jpg",
       caption: "Leading creative direction for the general assembly",
     },
     {
@@ -198,7 +198,7 @@ const Activities = () => {
       period: "February 2025",
       description:
         "A mid-year general assembly organized by the PUP Social Studies Guild to re-engage members and align organizational priorities. Assisted in event logistics and financial coordination to ensure smooth implementation.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/SSilakbo.jpg",
       caption: "Coordinating logistics for the general assembly",
     },
     {
@@ -207,7 +207,7 @@ const Activities = () => {
       period: "January 2025",
       description:
         "Represented The Limestone, the official student publication of the College of Education, as a photographer and media partner for this formal event that recognizes education students' transition to internship and field practice.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/COED-Pinning.jpg",
       caption: "Documenting the pinning ceremony as a photographer",
     },
     {
@@ -216,7 +216,7 @@ const Activities = () => {
       period: "November 2024",
       description:
         "Co-organized by the BEST Society, PUP Social Studies Guild, and The Limestone, this interdepartmental academic contest aimed to promote academic excellence, instructional innovation, and healthy competition among students in the College of Education.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/COEDunong.jpg",
       caption: "Organizing the academic contest",
     },
     {
@@ -225,7 +225,7 @@ const Activities = () => {
       period: "November 2024",
       description:
         "A leadership seminar for aspiring student leaders in the College of Education. Organized by the BEST Society, the event fostered unity among student leaders through collaborative workshops, vision-building activities, and values-centered dialogue.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/COEDyssey.jpg",
       caption: "Facilitating leadership workshops",
     },
     {
@@ -234,7 +234,7 @@ const Activities = () => {
       period: "September 2024",
       description:
         "A welcome-back event held to mark the beginning of a new academic year. Participated as a partner organization through BEST Society and the PUP Social Studies Guild, helping create a festive and inclusive atmosphere for returning students.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/Balik-Sinta.jpg",
       caption: "Creating a welcoming atmosphere for returning students",
     },
     {
@@ -243,7 +243,7 @@ const Activities = () => {
       period: "August 2024",
       description:
         "Organized by the BEST Society, this leadership seminar aimed to inspire and equip student-leaders with the essential skills and mindset for effective leadership. Contributed to the visual branding and creative outputs used throughout the event.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/Leadership-Empowerment.jpg",
       caption: "Designing visual materials for the leadership seminar",
     },
     {
@@ -252,7 +252,7 @@ const Activities = () => {
       period: "June 2024",
       description:
         "A university-wide pride event celebrating gender diversity and equality. Represented the Bachelor of Elementary and Secondary Teaching Society (BEST Society) as a partner organization, supporting advocacy efforts for inclusion and LGBTQIA+ rights.",
-      image: "photo-1473091534298-04dcbce3278c",
+      image: "/activities/overall/PUP-Rainbow.jpg",
       caption: "Supporting LGBTQIA+ advocacy efforts",
     },
   ]
@@ -296,11 +296,13 @@ const Activities = () => {
                 key={index}
                 className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-mint-500/10 overflow-hidden hover:shadow-2xl hover:shadow-mint-500/20 transition-all duration-300 border border-gray-700/50 hover:border-mint-400/30 flex flex-col min-h-[400px] md:min-h-[500px]"
               >
-              <img 
-                src={`https://images.unsplash.com/${activity.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                alt={activity.title}
-                  className="w-full h-40 md:h-48 object-cover"
-                />
+                <div className="relative w-full aspect-video">
+                  <img 
+                    src={activity.image}
+                    alt={activity.title}
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+                </div>
                 <div className="p-4 md:p-6 flex flex-col flex-grow">
                   <div className="flex items-start justify-between mb-2 md:mb-3">
                     <div className="relative group">
@@ -312,9 +314,9 @@ const Activities = () => {
                       <div className="absolute inset-0 bg-mint-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                     </div>
                     <span className="bg-gradient-to-r from-mint-500/20 to-sage-500/20 text-mint-300 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold border border-mint-400/30 shrink-0">
-                    {activity.role}
-                  </span>
-                </div>
+                      {activity.role}
+                    </span>
+                  </div>
                   <div className="flex items-center mb-2 md:mb-3">
                     <Calendar className="h-3 md:h-4 w-3 md:w-4 text-sage-400 mr-2 shrink-0" />
                     <span className="text-sm md:text-base text-gray-400">{activity.period}</span>
@@ -407,14 +409,16 @@ const Activities = () => {
                     className={`flex flex-col lg:flex-row items-center gap-4 md:gap-8 ${((extraCurricularPage - 1) * itemsPerPage + index) % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
                   >
                     <div className="lg:w-1/2">
-                      <img
-                        src={`https://images.unsplash.com/${activity.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                        alt={activity.title}
-                        className="w-full h-48 md:h-64 object-cover rounded-xl md:rounded-2xl shadow-lg shadow-rose-500/10 border border-gray-700/50"
-                      />
+                      <div className="relative w-[330px] h-[220px] md:w-[650px] md:h-[400px] lg:w-full lg:h-[350px] lg:aspect-video bg-gradient-to-r from-lilac-500/30 to-pink-500/30 rounded-2xl">
+                        <img
+                          src={activity.image}
+                          alt={activity.title}
+                          className="absolute inset-0 w-full h-full object-contain object-center rounded-xl md:rounded-2xl shadow-lg shadow-rose-500/10 border border-gray-700/50"
+                        />
+                      </div>
                       <p className="text-xs md:text-sm text-gray-400 mt-2 italic text-center">{activity.caption}</p>
                     </div>
-                <div className="lg:w-1/2">
+                    <div className="lg:w-1/2">
                       <div className="flex items-start justify-between mb-2 md:mb-3">
                         <div className="relative group">
                           <h3 className="text-xl md:text-2xl font-bold text-white pr-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
@@ -525,11 +529,13 @@ const Activities = () => {
                   key={index}
                   className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30 flex flex-col min-h-[400px] md:min-h-[500px]"
                 >
+                  <div className="relative w-full aspect-video">
                   <img 
-                    src={`https://images.unsplash.com/${activity.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
+                    src={activity.image}
                     alt={activity.title}
-                    className="w-full h-40 md:h-48 object-cover"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
                   />
+                </div>
                   <div className="p-4 md:p-6 flex flex-col flex-grow">
                     <div className="flex items-start justify-between mb-2 md:mb-3">
                       <div className="relative group">
@@ -554,7 +560,7 @@ const Activities = () => {
                       </p>
                       <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
                       <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
-                </div>
+                    </div>
                     <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-2 md:pl-3 mt-auto">{activity.caption}</p>
                   </div>
                 </div>

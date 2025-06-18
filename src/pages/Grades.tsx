@@ -16,7 +16,7 @@ const Grades = () => {
         { name: "Understanding the Self/ Pag-unawa sa Sarili", grade: "1.25", units: 3 },
         { name: "Readings in Philippine History/ Mga Babasahin Hinggil sa Kasaysayan ng Pilipinas", grade: "1.00", units: 3 },
         { name: "The Contemporary World/ Ang Kasalukuyang Daigdig", grade: "1.00", units: 3 },
-        { name: "Science, Technology and Society/ Aghan, Teknolohiya, at Lipunan", grade: "1.25", units: 3 },
+        { name: "Science, Technology and Society/ Agham, Teknolohiya, at Lipunan", grade: "1.25", units: 3 },
         { name: "Gender and Society", grade: "1.00", units: 3 },
         { name: "Filipinolohiya at Pambansang Kaunlaran", grade: "1.25", units: 3 },
         { name: "Physical Activity Towards Health and Fitness 1", grade: "1.00", units: 2 },

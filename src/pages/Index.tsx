@@ -99,8 +99,8 @@ const Index = () => {
 
   const achievements = [
     {
-      number: "TBA",
-      label: "Current GPA",
+      number: "5x",
+      label: "President's Lister",
       description: "Consistent academic excellence",
       icon: Award,
       gradient: "from-peach-500/20 to-coral-500/20",
@@ -109,7 +109,7 @@ const Index = () => {
       shadowColor: "shadow-coral-400/20",
     },
     {
-      number: "15+",
+      number: "42",
       label: "Courses Completed",
       description: "Core education and social studies subjects",
       icon: BookOpen,
@@ -119,7 +119,7 @@ const Index = () => {
       shadowColor: "shadow-lavender-400/20",
     },
     {
-      number: "5+",
+      number: "24",
       label: "Activities Joined",
       description: "Overall curricular, activities and event involvement",
       icon: Users,

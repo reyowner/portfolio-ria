@@ -1,58 +1,56 @@
 import Navigation from "../components/Navigation"
-import { School, Coffee, Users, Star } from "lucide-react"
+import { School, Star, Users } from "lucide-react"
 
 const UniversityLife = () => {
   const lifeExperiences = [
     {
-      title: "Campus Life During Pandemic",
+      title: "1st Day of Classes (Balik Sinta)",
       description:
-        "Adapting to online learning while maintaining connections with classmates through virtual study groups and online social activities.",
-      image: "photo-1581091226825-a6a2a5aee158",
+        "My Balik Sinta experience was quite funny—we weren't really supposed to attend since we didn't have a pass. But surprisingly, we still got in! I had so much fun, especially because I got to bond with my best friends, Sarah and Zel, and finally met some of my blockmates.",
+      image: "/activities/university-life/first-day.mp4",
       caption: "Virtual class session with my Social Studies methods course",
     },
     {
-      title: "Return to Face-to-Face Classes",
+      title: "ID Issuance & Meet-up with Friends",
       description:
-        "The joy and challenges of returning to campus after months of online learning. Reconnecting with professors and classmates in person.",
+        "It was the last day of ID issuance, and I chose that day on purpose because I wanted to meet up with my friends—Raine, Ace, Rei, and Ara. It felt exciting to finally get my ID and spend the day with them.",
       image: "photo-1519389950473-47ba0277781c",
       caption: "First day back on campus - excited to be learning together again",
     },
     {
-      title: "Library Study Sessions",
+      title: "First Face-to-Face Class",
       description:
-        "Countless hours spent in the PUP library, researching for papers, preparing for exams, and collaborating with study groups.",
+        "Our first ever face-to-face session happened during our NSTP-CWTS class. It was a fun and memorable moment because I got to meet more of our blockmates in person for the first time. It was also the first time our entire class was complete—together with BSEDMT 1-1N and BSEDMT 1-1D.",
       image: "photo-1498050108023-c5249f4df085",
       caption: "Late night study session in the university library preparing for comprehensive exams",
     },
     {
-      title: "Campus Events and Celebrations",
+      title: "Block Team Building",
       description:
-        "Participating in university-wide celebrations, academic conferences, and cultural events that enriched my college experience.",
+        "It was our block's first team building, held at Ninoy Aquino Parks and Wildlife Center. We finally got to meet our new blockmates and spend quality time together. The day was filled with fun games, bonding activities, and memories that we'll always cherish.",
       image: "photo-1721322800607-8c38375eef04",
       caption: "Attending the annual Education Week celebration in the university auditorium",
     },
-  ]
-
-  const memorable_moments = [
     {
-      title: "First Day Jitters",
+      title: "Block's First Award at COEDunong",
       description:
-        "I still remember my first day at PUP - feeling nervous but excited to begin my journey as a future educator. The campus seemed huge and intimidating, but the warm welcome from seniors made me feel at home.",
+        "It was a proud moment for our block as we received our very first award at COEDunong. All our efforts, teamwork, and participation were recognized, and it made us feel more united and motivated. It was a reminder that even small wins are worth celebrating—especially when shared with people who work hard together.",
+      image: "photo-1721322800607-8c38375eef04",
+      caption: "Attending the annual Education Week celebration in the university auditorium",
     },
     {
-      title: "Finding My Study Group",
+      title: "First Demo Teaching",
       description:
-        "Meeting my closest college friends during our Introduction to Teaching course. We formed a study group that became my support system throughout my academic journey.",
+        "I performed my first peer demo teaching as our final requirement. To be honest, it wasn't what I expected—it didn't go the way I envisioned. I know I could've done better. But instead of dwelling on it, I took it as a lesson and motivation to improve and grow as a future educator.",
+      image: "photo-1721322800607-8c38375eef04",
+      caption: "Attending the annual Education Week celebration in the university auditorium",
     },
     {
-      title: "First Teaching Demo",
+      title: "Thesis Title Defense",
       description:
-        "The nervousness and excitement of conducting my first teaching demonstration in Methods of Teaching Social Studies. Despite my shaky hands, I realized this is truly my calling.",
-    },
-    {
-      title: "Research Conference Presentation",
-      description:
-        "Presenting my research on innovative teaching methods at the college's student research conference. It was nerve-wracking but incredibly rewarding to share my findings with faculty and peers.",
+        "We defended our thesis title, 'History Without Boundary: The Integration of Non-Immersive Virtual Reality as a Pedagogical Technique in Teaching World History.' It was a nerve-wracking but fulfilling experience. Our title was accepted with minor revisions, and that moment marked the official beginning of our thesis journey.",
+      image: "photo-1721322800607-8c38375eef04",
+      caption: "Attending the annual Education Week celebration in the university auditorium",
     },
   ]
 
@@ -82,8 +80,8 @@ const UniversityLife = () => {
       {/* Life Experiences Gallery */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="text-center mb-8 md:mb-12">
-          <Coffee className="h-8 w-8 md:h-12 md:w-12 mx-auto text-lavender-400 mb-3 md:mb-4" />
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Campus Life Moments</h2>
+          <Star className="h-8 w-8 md:h-12 md:w-12 mx-auto text-lavender-400 mb-3 md:mb-4" />
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Memorable Campus Life Moments</h2>
           <p className="text-base md:text-lg text-gray-300">Visual journey through my university experiences</p>
         </div>
 
@@ -93,11 +91,22 @@ const UniversityLife = () => {
               key={index}
               className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30"
             >
-              <img
-                src={`https://images.unsplash.com/${experience.image}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                alt={experience.title}
-                className="w-full h-48 md:h-64 object-cover"
-              />
+              <div className="relative w-[330px] h-[220px] md:w-[650px] md:h-[400px] lg:w-full lg:h-[350px] lg:aspect-video bg-gradient-to-r from-lilac-500/30 to-pink-500/30 rounded-2xl">
+                {experience.image.endsWith('.mp4') ? (
+                  <video
+                    src={experience.image}
+                    className="absolute inset-0 w-full h-full object-contain object-center rounded-xl md:rounded-2xl shadow-lg shadow-sky-500/10 border border-gray-700/50"
+                    controls
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={experience.image}
+                    alt={experience.title}
+                    className="absolute inset-0 w-full h-full object-contain object-center rounded-xl md:rounded-2xl shadow-lg shadow-sky-500/10 border border-gray-700/50"
+                  />
+                )}
+              </div>
               <div className="p-4 md:p-6">
                 <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">{experience.title}</h3>
                 <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed">{experience.description}</p>
@@ -105,29 +114,6 @@ const UniversityLife = () => {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Memorable Moments */}
-      <div className="bg-gray-800/50 backdrop-blur-sm py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-12">
-            <Star className="h-8 w-8 md:h-12 md:w-12 mx-auto text-rose-400 mb-3 md:mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Memorable Moments</h2>
-            <p className="text-base md:text-lg text-gray-300">Special memories that will stay with me forever</p>
-          </div>
-
-          <div className="space-y-6 md:space-y-8">
-            {memorable_moments.map((moment, index) => (
-              <div
-                key={index}
-                className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 border border-gray-700/50 hover:border-rose-400/30"
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">{moment.title}</h3>
-                <p className="text-base md:text-lg text-gray-300 leading-relaxed">{moment.description}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -145,40 +131,40 @@ const UniversityLife = () => {
               {
                 value: "Excellence",
                 description:
-                  "Striving for academic excellence in all my coursework and maintaining high standards in everything I do.",
+                  "Striving for academic excellence in both theoretical and practical aspects of my education.",
                 example:
-                  "Consistently earning high grades and seeking to exceed expectations in assignments and projects.",
+                  "Diligently completing academic tasks, actively participating in discussions and reportings, and always aiming to deliver quality outputs.",
                 color: "rose",
               },
               {
                 value: "Integrity",
-                description: "Upholding honesty and ethical behavior in all academic and personal endeavors.",
-                example: "Always citing sources properly in research and being truthful in all academic work.",
+                description: "Upholding honesty, fairness, and strong moral principles in both academic and personal life.",
+                example: "Avoiding academic dishonesty, being transparent in group work, and holding myself accountable for my responsibilities.",
                 color: "lavender",
               },
               {
                 value: "Nationalism",
                 description:
-                  "Developing love for country through studying Philippine history and understanding our cultural heritage.",
-                example: "Creating lesson plans that highlight Filipino achievements and promoting national pride.",
+                  "Fostering love for the country by building civic competence and understanding the nation's history, government, and social realities.",
+                example: "Engaging deeply with Social Studies subjects, promoting active citizenship, and creating learning materials that encourage students to participate in nation-building.",
                 color: "sky",
               },
               {
                 value: "Spirituality",
-                description: "Recognizing the importance of spiritual growth alongside academic development.",
-                example: "Participating in campus ministry activities and maintaining personal spiritual practices.",
+                description: "Recognizing the importance of faith and inner values in shaping character and purpose.",
+                example: "Taking time for reflection, prayer, and expressing gratitude amidst academic challenges.",
                 color: "mint",
               },
               {
                 value: "Social Responsibility",
-                description: "Understanding my role as a future educator in serving the community and society.",
-                example: "Volunteering in community teaching programs and environmental conservation efforts.",
+                description: "Being aware of my responsibility to contribute positively to the community and advocate for equity and justice.",
+                example: "Joining outreach programs and promoting inclusive education in practice teaching and group outputs.",
                 color: "peach",
               },
               {
                 value: "Innovation",
-                description: "Embracing new teaching methods and technologies to enhance learning experiences.",
-                example: "Learning to use digital tools and innovative pedagogical approaches in my practice teaching.",
+                description: "Being open to new ideas, approaches, and technologies that can improve teaching and learning.",
+                example: "Exploring virtual reality, using creative presentation tools, and adapting lessons to modern learners' needs.",
                 color: "sage",
               },
             ].map((item, index) => (

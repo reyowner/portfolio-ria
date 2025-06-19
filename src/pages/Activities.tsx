@@ -505,60 +505,72 @@ const Activities = () => {
           </div>
         )}
 
-        <div
-          className={`flex flex-col min-h-[500px] md:min-h-[600px] select-none ${coIsTransitioning ? (coTransitionDirection === 'left' ? '-translate-x-6 opacity-80' : 'translate-x-6 opacity-80') : 'translate-x-0 opacity-100'}`}
-          onMouseDown={handleCoDragStart}
-          onMouseMove={coIsDragging ? handleCoDragMove : undefined}
-          onMouseUp={handleCoDragEnd}
-          onMouseLeave={coIsDragging ? handleCoDragEnd : undefined}
-          onTouchStart={handleCoDragStart}
-          onTouchMove={handleCoDragMove}
-          onTouchEnd={handleCoDragEnd}
-          style={{ cursor: coIsDragging ? 'grabbing' : 'grab' }}
-        >
-          <div className={`flex-grow grid lg:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8 transition-transform ${coIsDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
-            style={{ transform: coIsDragging ? `translateX(${coDragOffset}px)` : undefined }}>
-            {coCurricularActivities.slice((coCurricularPage - 1) * itemsPerPage, coCurricularPage * itemsPerPage).map((activity, index) => (
-              <div
-                key={index}
-                className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-mint-500/10 overflow-hidden hover:shadow-2xl hover:shadow-mint-500/20 transition-all duration-300 border border-gray-700/50 hover:border-mint-400/30 flex flex-col min-h-[400px] md:min-h-[500px]"
-              >
-                <div className="relative w-full aspect-video">
-                  <img 
-                    src={activity.image}
-                    alt={activity.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                  />
+        {/* Co-Curricular Activities Carousel */}
+        <div className="relative">
+          <div
+            className={`relative overflow-hidden rounded-3xl select-none`}
+            onMouseDown={handleCoDragStart}
+            onMouseMove={coIsDragging ? handleCoDragMove : undefined}
+            onMouseUp={handleCoDragEnd}
+            onMouseLeave={coIsDragging ? handleCoDragEnd : undefined}
+            onTouchStart={handleCoDragStart}
+            onTouchMove={handleCoDragMove}
+            onTouchEnd={handleCoDragEnd}
+            style={{ cursor: coIsDragging ? 'grabbing' : 'grab' }}
+          >
+            {/* Carousel Track */}
+            <div
+              className={`flex transition-transform ${coIsDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
+              style={{ transform: `translateX(calc(-${(coCurricularPage - 1) * 100}% + ${coDragOffset}px))` }}
+            >
+              {Array.from({ length: Math.ceil(coCurricularActivities.length / itemsPerPage) }).map((_, pageIdx) => (
+                <div key={pageIdx} className="w-full flex-shrink-0">
+                  <div className="flex-grow grid lg:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8">
+                    {coCurricularActivities.slice(pageIdx * itemsPerPage, (pageIdx + 1) * itemsPerPage).map((activity, index) => (
+                      <div
+                        key={index}
+                        className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-mint-500/10 overflow-hidden hover:shadow-2xl hover:shadow-mint-500/20 transition-all duration-300 border border-gray-700/50 hover:border-mint-400/30 flex flex-col min-h-[400px] md:min-h-[500px]"
+                      >
+                        <div className="relative w-full aspect-video">
+                          <img 
+                            src={activity.image}
+                            alt={activity.title}
+                            className="absolute inset-0 w-full h-full object-cover object-center"
+                          />
+                        </div>
+                        <div className="p-4 md:p-6 flex flex-col flex-grow">
+                          <div className="flex items-start justify-between mb-2 md:mb-3">
+                            <div className="relative group">
+                              <h3 className="text-lg md:text-xl font-bold text-white pr-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                                {activity.title}
+                              </h3>
+                              <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-mint-400/0 via-mint-400/50 to-mint-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-mint-400/0 via-mint-400/50 to-mint-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              <div className="absolute inset-0 bg-mint-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                            </div>
+                            <span className="bg-gradient-to-r from-mint-500/20 to-sage-500/20 text-mint-300 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold border border-mint-400/30 shrink-0">
+                              {activity.role}
+                            </span>
+                          </div>
+                          <div className="flex items-center mb-2 md:mb-3">
+                            <Calendar className="h-3 md:h-4 w-3 md:w-4 text-sage-400 mr-2 shrink-0" />
+                            <span className="text-sm md:text-base text-gray-400">{activity.period}</span>
+                          </div>
+                          <div className="relative group/desc">
+                            <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
+                              {activity.description}
+                            </p>
+                            <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+                            <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-mint-400/0 via-mint-400/30 to-mint-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                          <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-mint-400/30 pl-2 md:pl-3 mt-auto">{activity.caption}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
-                  <div className="flex items-start justify-between mb-2 md:mb-3">
-                    <div className="relative group">
-                      <h3 className="text-lg md:text-xl font-bold text-white pr-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
-                        {activity.title}
-                      </h3>
-                      <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-mint-400/0 via-mint-400/50 to-mint-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-mint-400/0 via-mint-400/50 to-mint-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute inset-0 bg-mint-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                    </div>
-                    <span className="bg-gradient-to-r from-mint-500/20 to-sage-500/20 text-mint-300 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold border border-mint-400/30 shrink-0">
-                      {activity.role}
-                    </span>
-                  </div>
-                  <div className="flex items-center mb-2 md:mb-3">
-                    <Calendar className="h-3 md:h-4 w-3 md:w-4 text-sage-400 mr-2 shrink-0" />
-                    <span className="text-sm md:text-base text-gray-400">{activity.period}</span>
-                  </div>
-                  <div className="relative group/desc">
-                    <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
-                      {activity.description}
-                    </p>
-                    <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-                    <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-mint-400/0 via-mint-400/30 to-mint-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-mint-400/30 pl-2 md:pl-3 mt-auto">{activity.caption}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Custom Pagination for Co-Curricular */}
@@ -657,68 +669,78 @@ const Activities = () => {
             </div>
           )}
 
-          <div
-            className={`flex flex-col min-h-[500px] md:min-h-[600px] select-none ${exIsTransitioning ? (exTransitionDirection === 'left' ? '-translate-x-6 opacity-80' : 'translate-x-6 opacity-80') : 'translate-x-0 opacity-100'}`}
-            onMouseDown={handleExDragStart}
-            onMouseMove={exIsDragging ? handleExDragMove : undefined}
-            onMouseUp={handleExDragEnd}
-            onMouseLeave={exIsDragging ? handleExDragEnd : undefined}
-            onTouchStart={handleExDragStart}
-            onTouchMove={handleExDragMove}
-            onTouchEnd={handleExDragEnd}
-            style={{ cursor: exIsDragging ? 'grabbing' : 'grab' }}
-          >
-            <div className={`flex-grow space-y-6 md:space-y-8 mb-6 md:mb-8 transition-transform ${exIsDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
-              style={{ transform: exIsDragging ? `translateX(${exDragOffset}px)` : undefined }}>
-              {extraCurricularActivities
-                .slice((extraCurricularPage - 1) * itemsPerPage, extraCurricularPage * itemsPerPage)
-                .map((activity, index) => (
-                  <div
-                    key={index}
-                    className={`flex flex-col lg:flex-row items-center gap-4 md:gap-8 ${((extraCurricularPage - 1) * itemsPerPage + index) % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
-                  >
-                    <div className="lg:w-1/2">
-                      <div className="relative w-[330px] h-[220px] md:w-[650px] md:h-[400px] lg:w-full lg:h-[350px] lg:aspect-video bg-gradient-to-r from-lilac-500/30 to-pink-500/30 rounded-2xl">
-                        <img
-                          src={activity.image}
-                          alt={activity.title}
-                          className="absolute inset-0 w-full h-full object-contain object-center rounded-xl md:rounded-2xl shadow-lg shadow-rose-500/10 border border-gray-700/50"
-                        />
-                      </div>
-                      <p className="text-xs md:text-sm text-gray-400 mt-2 italic text-center">{activity.caption}</p>
-                    </div>
-                    <div className="lg:w-1/2">
-                      <div className="flex items-start justify-between mb-2 md:mb-3">
-                        <div className="relative group">
-                          <h3 className="text-xl md:text-2xl font-bold text-white pr-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
-                            {activity.title}
-                          </h3>
-                          <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-rose-400/0 via-rose-400/50 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-rose-400/0 via-rose-400/50 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="absolute inset-0 bg-rose-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+          {/* Extra-Curricular Activities Carousel */}
+          <div className="relative">
+            <div
+              className={`relative overflow-hidden rounded-3xl select-none`}
+              onMouseDown={handleExDragStart}
+              onMouseMove={exIsDragging ? handleExDragMove : undefined}
+              onMouseUp={handleExDragEnd}
+              onMouseLeave={exIsDragging ? handleExDragEnd : undefined}
+              onTouchStart={handleExDragStart}
+              onTouchMove={handleExDragMove}
+              onTouchEnd={handleExDragEnd}
+              style={{ cursor: exIsDragging ? 'grabbing' : 'grab' }}
+            >
+              {/* Carousel Track */}
+              <div
+                className={`flex transition-transform ${exIsDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
+                style={{ transform: `translateX(calc(-${(extraCurricularPage - 1) * 100}% + ${exDragOffset}px))` }}
+              >
+                {Array.from({ length: Math.ceil(extraCurricularActivities.length / itemsPerPage) }).map((_, pageIdx) => (
+                  <div key={pageIdx} className="w-full flex-shrink-0">
+                    <div className="flex-grow space-y-6 md:space-y-8 mb-6 md:mb-8">
+                      {extraCurricularActivities.slice(pageIdx * itemsPerPage, (pageIdx + 1) * itemsPerPage).map((activity, index) => (
+                        <div
+                          key={index}
+                          className={`flex flex-col lg:flex-row items-center gap-4 md:gap-8 ${((pageIdx * itemsPerPage + index) % 2 === 1 ? "lg:flex-row-reverse" : "")}`}
+                        >
+                          <div className="lg:w-1/2">
+                            <div className="relative w-[330px] h-[220px] md:w-[650px] md:h-[400px] lg:w-full lg:h-[350px] lg:aspect-video bg-gradient-to-r from-lilac-500/30 to-pink-500/30 rounded-2xl">
+                              <img
+                                src={activity.image}
+                                alt={activity.title}
+                                className="absolute inset-0 w-full h-full object-contain object-center rounded-xl md:rounded-2xl shadow-lg shadow-rose-500/10 border border-gray-700/50"
+                              />
+                            </div>
+                            <p className="text-xs md:text-sm text-gray-400 mt-2 italic text-center">{activity.caption}</p>
+                          </div>
+                          <div className="lg:w-1/2">
+                            <div className="flex items-start justify-between mb-2 md:mb-3">
+                              <div className="relative group">
+                                <h3 className="text-xl md:text-2xl font-bold text-white pr-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                                  {activity.title}
+                                </h3>
+                                <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-rose-400/0 via-rose-400/50 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-rose-400/0 via-rose-400/50 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-rose-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                              </div>
+                              <span className="bg-gradient-to-r from-rose-500/20 to-pink-500/20 text-rose-300 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold border border-rose-400/30 shrink-0">
+                                {activity.role}
+                              </span>
+                            </div>
+                            <div className="flex items-center mb-3 md:mb-4">
+                              <Calendar className="h-3 md:h-4 w-3 md:w-4 text-rose-400 mr-2 shrink-0" />
+                              <span className="text-sm md:text-base text-gray-400">{activity.period}</span>
+                            </div>
+                            <div className="relative group/desc">
+                              <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
+                                {activity.description}
+                              </p>
+                              <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+                              <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/0 via-rose-400/30 to-rose-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                            <div className="bg-gradient-to-r from-rose-500/20 to-pink-500/20 p-3 md:p-4 rounded-lg border border-rose-400/30 backdrop-blur-sm">
+                              <h4 className="font-semibold text-rose-300 mb-1 md:mb-2 text-sm md:text-base">Impact Made:</h4>
+                              <p className="text-sm md:text-base text-gray-300">{activity.impact}</p>
+                            </div>
+                          </div>
                         </div>
-                        <span className="bg-gradient-to-r from-rose-500/20 to-pink-500/20 text-rose-300 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold border border-rose-400/30 shrink-0">
-                          {activity.role}
-                        </span>
-                      </div>
-                      <div className="flex items-center mb-3 md:mb-4">
-                        <Calendar className="h-3 md:h-4 w-3 md:w-4 text-rose-400 mr-2 shrink-0" />
-                        <span className="text-sm md:text-base text-gray-400">{activity.period}</span>
-                      </div>
-                      <div className="relative group/desc">
-                        <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
-                          {activity.description}
-                        </p>
-                        <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-                        <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-rose-400/0 via-rose-400/30 to-rose-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
-                      </div>
-                      <div className="bg-gradient-to-r from-rose-500/20 to-pink-500/20 p-3 md:p-4 rounded-lg border border-rose-400/30 backdrop-blur-sm">
-                        <h4 className="font-semibold text-rose-300 mb-1 md:mb-2 text-sm md:text-base">Impact Made:</h4>
-                        <p className="text-sm md:text-base text-gray-300">{activity.impact}</p>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 ))}
+              </div>
             </div>
 
             {/* Custom Pagination for Extra-Curricular */}
@@ -820,60 +842,72 @@ const Activities = () => {
             </div>
           )}
 
-          <div
-            className={`flex flex-col min-h-[500px] md:min-h-[600px] select-none ${ovIsTransitioning ? (ovTransitionDirection === 'left' ? '-translate-x-6 opacity-80' : 'translate-x-6 opacity-80') : 'translate-x-0 opacity-100'}`}
-            onMouseDown={handleOvDragStart}
-            onMouseMove={ovIsDragging ? handleOvDragMove : undefined}
-            onMouseUp={handleOvDragEnd}
-            onMouseLeave={ovIsDragging ? handleOvDragEnd : undefined}
-            onTouchStart={handleOvDragStart}
-            onTouchMove={handleOvDragMove}
-            onTouchEnd={handleOvDragEnd}
-            style={{ cursor: ovIsDragging ? 'grabbing' : 'grab' }}
-          >
-            <div className={`flex-grow grid lg:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8 transition-transform ${ovIsDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
-              style={{ transform: ovIsDragging ? `translateX(${ovDragOffset}px)` : undefined }}>
-              {overallActivitiesEvent.slice((overallPage - 1) * itemsPerPage, overallPage * itemsPerPage).map((activity, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30 flex flex-col min-h-[400px] md:min-h-[500px]"
-                >
-                  <div className="relative w-full aspect-video">
-                  <img 
-                    src={activity.image}
-                    alt={activity.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                  />
-                </div>
-                  <div className="p-4 md:p-6 flex flex-col flex-grow">
-                    <div className="flex items-start justify-between mb-2 md:mb-3">
-                      <div className="relative group">
-                        <h3 className="text-lg md:text-xl font-bold text-white pr-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
-                          {activity.title}
-                        </h3>
-                        <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                      </div>
-                      <span className="bg-gradient-to-r from-sky-500/20 to-lavender-500/20 text-sky-300 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold border border-sky-400/30 shrink-0">
-                        {activity.role}
-                      </span>
+          {/* Overall Activities/Events Carousel */}
+          <div className="relative">
+            <div
+              className={`relative overflow-hidden rounded-3xl select-none`}
+              onMouseDown={handleOvDragStart}
+              onMouseMove={ovIsDragging ? handleOvDragMove : undefined}
+              onMouseUp={handleOvDragEnd}
+              onMouseLeave={ovIsDragging ? handleOvDragEnd : undefined}
+              onTouchStart={handleOvDragStart}
+              onTouchMove={handleOvDragMove}
+              onTouchEnd={handleOvDragEnd}
+              style={{ cursor: ovIsDragging ? 'grabbing' : 'grab' }}
+            >
+              {/* Carousel Track */}
+              <div
+                className={`flex transition-transform ${ovIsDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
+                style={{ transform: `translateX(calc(-${(overallPage - 1) * 100}% + ${ovDragOffset}px))` }}
+              >
+                {Array.from({ length: Math.ceil(overallActivitiesEvent.length / itemsPerPage) }).map((_, pageIdx) => (
+                  <div key={pageIdx} className="w-full flex-shrink-0">
+                    <div className="flex-grow grid lg:grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8">
+                      {overallActivitiesEvent.slice(pageIdx * itemsPerPage, (pageIdx + 1) * itemsPerPage).map((activity, index) => (
+                        <div
+                          key={index}
+                          className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30 flex flex-col min-h-[400px] md:min-h-[500px]"
+                        >
+                          <div className="relative w-full aspect-video">
+                            <img 
+                              src={activity.image}
+                              alt={activity.title}
+                              className="absolute inset-0 w-full h-full object-cover object-center"
+                            />
+                          </div>
+                          <div className="p-4 md:p-6 flex flex-col flex-grow">
+                            <div className="flex items-start justify-between mb-2 md:mb-3">
+                              <div className="relative group">
+                                <h3 className="text-lg md:text-xl font-bold text-white pr-4 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                                  {activity.title}
+                                </h3>
+                                <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                              </div>
+                              <span className="bg-gradient-to-r from-sky-500/20 to-lavender-500/20 text-sky-300 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold border border-sky-400/30 shrink-0">
+                                {activity.role}
+                              </span>
+                            </div>
+                            <div className="flex items-center mb-2 md:mb-3">
+                              <Calendar className="h-3 md:h-4 w-3 md:w-4 text-sky-400 mr-2 shrink-0" />
+                              <span className="text-sm md:text-base text-gray-400">{activity.period}</span>
+                            </div>
+                            <div className="relative group/desc">
+                              <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
+                                {activity.description}
+                              </p>
+                              <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+                              <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                            <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-2 md:pl-3 mt-auto">{activity.caption}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex items-center mb-2 md:mb-3">
-                      <Calendar className="h-3 md:h-4 w-3 md:w-4 text-sky-400 mr-2 shrink-0" />
-                      <span className="text-sm md:text-base text-gray-400">{activity.period}</span>
-                    </div>
-                    <div className="relative group/desc">
-                      <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
-                        {activity.description}
-                      </p>
-                      <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-                      <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-2 md:pl-3 mt-auto">{activity.caption}</p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Custom Pagination for Overall Activities */}

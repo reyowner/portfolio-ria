@@ -1,4 +1,5 @@
 import Navigation from "../components/Navigation"
+import Footer from "../components/Footer"
 import { FileText, TrendingUp, Award, BookOpen } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -774,6 +775,7 @@ const Grades = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

@@ -1,10 +1,137 @@
+"use client"
+
+import type React from "react"
+
 import Navigation from "../components/Navigation"
-import Footer from "../components/Footer"
-import { FileText, TrendingUp, Award, BookOpen } from "lucide-react"
+import { FileText, TrendingUp, Award, BookOpen, ChevronLeft, ChevronRight } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState, useEffect, useRef } from "react"
+
+// Sample Testpapers & Feedback Gallery Data
+const sampleTestFeedback = [
+  {
+    image: "/grades/sample/number1-sample.jpg",
+    alt: "Sample testpaper and feedback document 1",
+    title: "Assessment Paper #1",
+    description: "Research paper with feedback in Asian Studies",
+    featured: false,
+    tag: "Featured",
+  },
+  {
+    image: "/grades/sample/number2-sample.jpg",
+    alt: "Sample testpaper and feedback document 2",
+    title: "Assessment Paper #2",
+    description: "Scored quiz in World History",
+    featured: false,
+  },
+  {
+    image: "/grades/sample/number3-sample.jpg",
+    alt: "Sample testpaper and feedback document 3",
+    title: "Assessment Paper #3",
+    description: "Quiz in Asian Studies based on a submitted research paper",
+    featured: false,
+  },
+  {
+    image: "/grades/sample/number4-sample.jpg",
+    alt: "Sample testpaper and feedback document 4",
+    title: "Assessment Paper #4",
+    description: "Essay with score and handwritten feedback in GEED 035 - Panitikang Filipino",
+    featured: false,
+  },
+  {
+    image: "/grades/sample/number5-sample.jpg",
+    alt: "Sample testpaper and feedback document 5",
+    title: "Assessment Paper #5",
+    description: "Essays 3 and 4 with scores and instructor feedback in GEED 035 - Panitikang Filipino",
+    featured: false,
+  },
+]
 
 const Grades = () => {
+  const [galleryPage, setGalleryPage] = useState(1)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const galleryRef = useRef<HTMLDivElement>(null)
+  const touchStartX = useRef<number>(0)
+  const touchEndX = useRef<number>(0)
+  // Modal state for gallery
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalIndex, setModalIndex] = useState<number | null>(null)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  // Touch/Swipe handlers for gallery
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+
+    const distance = touchStartX.current - touchEndX.current
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      handleNextGallerySlide()
+    }
+    if (isRightSwipe) {
+      handlePrevGallerySlide()
+    }
+
+    // Reset touch positions
+    touchStartX.current = 0
+    touchEndX.current = 0
+  }
+
+  // Keyboard navigation for gallery
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        handlePrevGallerySlide()
+      } else if (e.key === "ArrowRight") {
+        handleNextGallerySlide()
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyPress)
+    return () => window.removeEventListener("keydown", handleKeyPress)
+  }, [galleryPage])
+
+  const handleNextGallerySlide = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setGalleryPage((prev) => (prev === sampleTestFeedback.length ? 1 : prev + 1))
+    setTimeout(() => setIsTransitioning(false), 500)
+  }
+
+  const handlePrevGallerySlide = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setGalleryPage((prev) => (prev === 1 ? sampleTestFeedback.length : prev - 1))
+    setTimeout(() => setIsTransitioning(false), 500)
+  }
+
+  const goToGallerySlide = (index: number) => {
+    if (isTransitioning || index === galleryPage) return
+    setIsTransitioning(true)
+    setGalleryPage(index)
+    setTimeout(() => setIsTransitioning(false), 500)
+  }
+
   const gradeRecords = [
     {
       semester: "First Year - First Semester",
@@ -15,7 +142,11 @@ const Grades = () => {
       subjects: [
         { name: "Civic Welfare Training Service", grade: "1.00", units: 3 },
         { name: "Understanding the Self/ Pag-unawa sa Sarili", grade: "1.25", units: 3 },
-        { name: "Readings in Philippine History/ Mga Babasahin Hinggil sa Kasaysayan ng Pilipinas", grade: "1.00", units: 3 },
+        {
+          name: "Readings in Philippine History/ Mga Babasahin Hinggil sa Kasaysayan ng Pilipinas",
+          grade: "1.00",
+          units: 3,
+        },
         { name: "The Contemporary World/ Ang Kasalukuyang Daigdig", grade: "1.00", units: 3 },
         { name: "Science, Technology and Society/ Agham, Teknolohiya, at Lipunan", grade: "1.25", units: 3 },
         { name: "Gender and Society", grade: "1.00", units: 3 },
@@ -68,7 +199,11 @@ const Grades = () => {
       status: "completed",
       subjects: [
         { name: "Technology for Teaching and Learning 1", grade: "1.25", units: 3 },
-        { name: "The Teacher and the Community, School Culture and Organizational Leadership", grade: "1.25", units: 3 },
+        {
+          name: "The Teacher and the Community, School Culture and Organizational Leadership",
+          grade: "1.25",
+          units: 3,
+        },
         { name: "Panitikang Filipino", grade: "1.00", units: 3 },
         { name: "Physical Activity Towards Health and Fitness", grade: "1.00", units: 2 },
         { name: "Places and Landscape in the Changing World", grade: "1.00", units: 3 },
@@ -131,16 +266,49 @@ const Grades = () => {
       sem: "2nd Sem",
       gpa: "TBA",
       status: "upcoming",
-      subjects: [
-        { name: "Practice Teaching/Internship", grade: "TBA", units: "TBA" },
-      ],
+      subjects: [{ name: "Practice Teaching/Internship", grade: "TBA", units: "TBA" }],
     },
   ]
+
+  const openModal = (idx: number) => {
+    setModalIndex(idx)
+    setModalOpen(true)
+  }
+  const closeModal = () => {
+    setModalOpen(false)
+    setModalIndex(null)
+  }
+  // Modal navigation handlers
+  const handleModalPrev = (e?: React.MouseEvent | React.KeyboardEvent) => {
+    if (e) e.stopPropagation()
+    if (modalIndex === null) return
+    setModalIndex((prev) =>
+      prev === 0 ? sampleTestFeedback.length - 1 : (prev as number) - 1
+    )
+  }
+  const handleModalNext = (e?: React.MouseEvent | React.KeyboardEvent) => {
+    if (e) e.stopPropagation()
+    if (modalIndex === null) return
+    setModalIndex((prev) =>
+      prev === sampleTestFeedback.length - 1 ? 0 : (prev as number) + 1
+    )
+  }
+  // Keyboard navigation for modal
+  useEffect(() => {
+    if (!modalOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') handleModalPrev()
+      if (e.key === 'ArrowRight') handleModalNext()
+      if (e.key === 'Escape') closeModal()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [modalOpen, modalIndex])
 
   return (
     <div className="min-h-screen bg-gray-900">
       <Navigation />
-      
+
       {/* Header */}
       <div className="bg-gradient-to-r from-gray-800 via-slate-800 to-gray-800 text-white py-12 md:py-16 relative overflow-hidden">
         <div className="absolute inset-0">
@@ -165,7 +333,9 @@ const Grades = () => {
         <div className="text-center mb-8 md:mb-12">
           <TrendingUp className="h-8 w-8 md:h-12 md:w-12 mx-auto text-peach-400 mb-3 md:mb-4" />
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Academic Performance</h2>
-          <p className="text-base md:text-lg text-gray-300">Semester-by-semester grade progression showing consistent improvement</p>
+          <p className="text-base md:text-lg text-gray-300">
+            Semester-by-semester grade progression showing consistent improvement
+          </p>
         </div>
 
         {/* Overall GPA Summary */}
@@ -273,21 +443,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[0].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gradient-to-r from-rose-500/20 to-coral-500/20 text-rose-300 border border-rose-400/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -318,21 +501,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[1].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gradient-to-r from-rose-500/20 to-coral-500/20 text-rose-300 border border-rose-400/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -383,21 +579,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[2].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gradient-to-r from-rose-500/20 to-coral-500/20 text-rose-300 border border-rose-400/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -428,21 +637,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[3].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gradient-to-r from-rose-500/20 to-coral-500/20 text-rose-300 border border-rose-400/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -493,21 +715,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[4].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gradient-to-r from-rose-500/20 to-coral-500/20 text-rose-300 border border-rose-400/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -541,21 +776,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[5].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gray-600/20 text-gray-400 border border-gray-500/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -614,21 +862,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[6].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gray-600/20 text-gray-400 border border-gray-500/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -667,21 +928,34 @@ const Grades = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-700">
-                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Subject</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Grade</th>
-                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">Units</th>
+                            <th className="text-left py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Subject
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Grade
+                            </th>
+                            <th className="text-center py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-white font-semibold">
+                              Units
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           {gradeRecords[7].subjects.map((subject, idx) => (
-                            <tr key={idx} className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors">
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">{subject.name}</td>
+                            <tr
+                              key={idx}
+                              className="border-b border-gray-700 hover:bg-lavender-500/5 transition-colors"
+                            >
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-sm md:text-base text-gray-300">
+                                {subject.name}
+                              </td>
                               <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                                 <span className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-semibold bg-gray-600/20 text-gray-400 border border-gray-500/30">
                                   {subject.grade}
                                 </span>
                               </td>
-                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">{subject.units}</td>
+                              <td className="py-2 md:py-3 px-2 md:px-4 text-center text-sm md:text-base text-gray-300">
+                                {subject.units}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -700,6 +974,127 @@ const Grades = () => {
         </Tabs>
       </div>
 
+      {/* Sample Testpapers and Feedback Gallery Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="text-center mb-8 md:mb-12">
+          <FileText className="h-8 w-8 md:h-12 md:w-12 mx-auto text-rose-400 mb-3 md:mb-4" />
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Sample Testpapers & Feedback</h2>
+          <p className="text-base md:text-lg text-gray-300">
+            Collection of academic assessments and instructor feedback
+          </p>
+        </div>
+
+        {/* Gallery Grid */}
+        <div className="bg-gray-800/80 backdrop-blur-sm p-6 md:p-8 rounded-xl md:rounded-2xl border border-gray-700/50 shadow-xl shadow-rose-500/10 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {sampleTestFeedback.map((item, idx) => (
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-xl bg-gray-700/50 flex flex-col cursor-pointer hover:shadow-rose-400/20 hover:shadow-xl transition-shadow duration-300"
+                onClick={() => openModal(idx)}
+                tabIndex={0}
+                role="button"
+                aria-label={`View ${item.title}`}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') openModal(idx) }}
+              >
+                <div className="relative bg-gradient-to-br from-gray-700/40 via-gray-800/60 to-gray-700/40 overflow-hidden min-h-[200px] md:min-h-[250px] flex items-center justify-center p-4 md:p-6">
+                  <img
+                    src={item.image || "/placeholder.svg"}
+                    alt={item.alt}
+                    className="object-contain max-h-full max-w-full transition-all duration-700 group-hover:scale-105 group-hover:brightness-110 rounded-lg shadow-lg"
+                    style={{
+                      maxHeight: '220px',
+                      minHeight: '80px',
+                      width: 'auto',
+                      height: 'auto',
+                    }}
+                  />
+                </div>
+                <div className="p-4 flex-1 flex flex-col">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2">{item.title}</h3>
+                  <p className="text-sm md:text-base text-gray-300 mb-2 line-clamp-3">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Modal for full image view */}
+        {modalOpen && modalIndex !== null && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={closeModal}>
+            {/* Navigation Arrows - outside modal card */}
+            <button
+              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-gray-800/80 hover:bg-rose-500/20 text-white rounded-full p-2 md:p-3 shadow-lg border border-rose-400/30 transition-all duration-200 z-20"
+              onClick={handleModalPrev}
+              aria-label="Previous image"
+              tabIndex={0}
+              style={{ outline: 'none' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button
+              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-gray-800/80 hover:bg-rose-500/20 text-white rounded-full p-2 md:p-3 shadow-lg border border-rose-400/30 transition-all duration-200 z-20"
+              onClick={handleModalNext}
+              aria-label="Next image"
+              tabIndex={0}
+              style={{ outline: 'none' }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+            <div
+              className="relative bg-gray-900 rounded-2xl shadow-2xl max-w-2xl w-full mx-4 md:mx-0 p-4 md:p-8 flex flex-col items-center"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                className="absolute top-3 right-3 text-gray-400 hover:text-rose-400 bg-gray-800/80 rounded-full p-2 transition-colors"
+                onClick={closeModal}
+                aria-label="Close"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="w-full flex items-center justify-center mb-6">
+                <img
+                  src={sampleTestFeedback[modalIndex].image}
+                  alt={sampleTestFeedback[modalIndex].alt}
+                  className="object-contain max-h-[60vh] max-w-full rounded-xl shadow-lg"
+                />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 text-center">{sampleTestFeedback[modalIndex].title}</h3>
+              <p className="text-base md:text-lg text-gray-300 text-center">{sampleTestFeedback[modalIndex].description}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Gallery Caption (Important Note) */}
+        <div className="mt-8 md:mt-12">
+          <div className="bg-gradient-to-r from-gray-800/80 to-gray-700/80 backdrop-blur-xl p-6 md:p-8 rounded-2xl border border-gray-600/30 shadow-xl">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 mt-1">
+                <div className="w-3 h-3 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full shadow-lg shadow-rose-400/30"></div>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-3">
+                  <FileText className="h-5 w-5 text-rose-400" />
+                  <span className="font-bold text-rose-300 text-lg">Important Note</span>
+                </div>
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                  These are the only papers and feedback I've managed to collect, as I usually archive my classes and
+                  submissions in Google Classroom. As for examination papers, we rarely had exams conducted in a
+                  face-to-face setup—most of our assessments were done online or through performance-based tasks,
+                  which explains the limited physical documents.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Academic Goals */}
       <div className="bg-gray-800/50 backdrop-blur-sm py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -714,27 +1109,41 @@ const Grades = () => {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Deepen understanding of Social Studies content and pedagogy across diverse historical, political, and cultural contexts</span>
+                  <span className="text-sm md:text-base">
+                    Deepen understanding of Social Studies content and pedagogy across diverse historical, political,
+                    and cultural contexts
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Stay committed to lifelong learning, with the primary goal of gaining meaningful knowledge and wisdom</span>
+                  <span className="text-sm md:text-base">
+                    Stay committed to lifelong learning, with the primary goal of gaining meaningful knowledge and
+                    wisdom
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Approach academic distinction as a bonus—not a pressure—focusing instead on holistic growth</span>
+                  <span className="text-sm md:text-base">
+                    Approach academic distinction as a bonus—not a pressure—focusing instead on holistic growth
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Successfully complete practice teaching while building authentic connections with students</span>
+                  <span className="text-sm md:text-base">
+                    Successfully complete practice teaching while building authentic connections with students
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Engage in research that reflects social relevance and educational equity</span>
+                  <span className="text-sm md:text-base">
+                    Engage in research that reflects social relevance and educational equity
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-mint-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Integrate real-world issues into learning to become a socially responsive educator</span>
+                  <span className="text-sm md:text-base">
+                    Integrate real-world issues into learning to become a socially responsive educator
+                  </span>
                 </li>
               </ul>
             </div>
@@ -744,38 +1153,52 @@ const Grades = () => {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Improve time management to balance academics, organizational work, and personal well-being</span>
+                  <span className="text-sm md:text-base">
+                    Improve time management to balance academics, organizational work, and personal well-being
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Strengthen verbal and written communication, especially in delivering instruction and facilitating dialogue</span>
+                  <span className="text-sm md:text-base">
+                    Strengthen verbal and written communication, especially in delivering instruction and facilitating
+                    dialogue
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Gain more hands-on teaching experience in various educational settings (formal and informal)</span>
+                  <span className="text-sm md:text-base">
+                    Gain more hands-on teaching experience in various educational settings (formal and informal)
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Enhance familiarity with educational technology tools for instruction and assessment</span>
+                  <span className="text-sm md:text-base">
+                    Enhance familiarity with educational technology tools for instruction and assessment
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Develop confidence and clarity in public speaking and professional interactions</span>
+                  <span className="text-sm md:text-base">
+                    Develop confidence and clarity in public speaking and professional interactions
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Learn effective strategies in inclusive education, particularly for diverse learner needs</span>
+                  <span className="text-sm md:text-base">
+                    Learn effective strategies in inclusive education, particularly for diverse learner needs
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-sage-400 mr-3 mt-0.5" />
-                  <span className="text-sm md:text-base">Practice self-discipline in managing academic workload without burnout</span>
+                  <span className="text-sm md:text-base">
+                    Practice self-discipline in managing academic workload without burnout
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

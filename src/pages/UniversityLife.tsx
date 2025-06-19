@@ -201,146 +201,156 @@ const UniversityLife = () => {
           </div>
         )}
 
-        <div
-          className="flex flex-col min-h-[500px] md:min-h-[600px] select-none"
-          onMouseDown={handleDragStart}
-          onMouseMove={isDragging ? handleDragMove : undefined}
-          onMouseUp={handleDragEnd}
-          onMouseLeave={isDragging ? handleDragEnd : undefined}
-          onTouchStart={handleDragStart}
-          onTouchMove={handleDragMove}
-          onTouchEnd={handleDragEnd}
-          style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
-        >
-          {/* Experience Cards */}
-          <div className={`flex-grow grid lg:grid-cols-2 gap-6 md:gap-8 mb-8 transition-transform ${isDragging ? 'duration-0' : 'duration-300 ease-in-out'} ${isTransitioning ? (transitionDirection === 'left' ? '-translate-x-6 opacity-80' : 'translate-x-6 opacity-80') : 'translate-x-0 opacity-100'}`}
-            style={{ transform: isDragging ? `translateX(${dragOffset}px)` : undefined }}
+        {/* Life Experiences Gallery Carousel */}
+        <div className="relative">
+          <div
+            className={`relative overflow-hidden rounded-3xl select-none`}
+            onMouseDown={handleDragStart}
+            onMouseMove={isDragging ? handleDragMove : undefined}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={isDragging ? handleDragEnd : undefined}
+            onTouchStart={handleDragStart}
+            onTouchMove={handleDragMove}
+            onTouchEnd={handleDragEnd}
+            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
           >
-            {currentExperiences.map((experience, index) => {
-              const globalIndex = startIndex + index
-              return (
-                <div
-                  key={globalIndex}
-                  className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30 flex flex-col group"
-                >
-                  <div className="relative w-full aspect-video">
-                    {experience.image.endsWith(".mp4") ? (
-                      <video
-                        src={experience.image}
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                        controls
-                        playsInline
-                      />
-                    ) : (
-                      <img
-                        src={experience.image || "/placeholder.svg"}
-                        alt={experience.title}
-                        className="absolute inset-0 w-full h-full object-cover object-center"
-                      />
-                    )}
-                  </div>
-                  <div className="p-4 md:p-6 flex flex-col flex-grow">
-                    <div className="relative group mb-2 md:mb-3">
-                      <h3 className="text-lg md:text-xl font-bold text-white line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
-                        {experience.title}
-                      </h3>
-                      <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                    </div>
+            {/* Carousel Track */}
+            <div
+              className={`flex transition-transform ${isDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
+              style={{ transform: `translateX(calc(-${(currentPage - 1) * 100}% + ${dragOffset}px))` }}
+            >
+              {Array.from({ length: totalPages }).map((_, pageIdx) => (
+                <div key={pageIdx} className="w-full flex-shrink-0">
+                  <div className={`flex-grow grid lg:grid-cols-2 gap-6 md:gap-8 mb-8`}>
+                    {lifeExperiences.slice(pageIdx * itemsPerPage, (pageIdx + 1) * itemsPerPage).map((experience, index) => {
+                      const globalIndex = pageIdx * itemsPerPage + index
+                      return (
+                        <div
+                          key={globalIndex}
+                          className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30 flex flex-col group"
+                        >
+                          <div className="relative w-full aspect-video">
+                            {experience.image.endsWith(".mp4") ? (
+                              <video
+                                src={experience.image}
+                                className="absolute inset-0 w-full h-full object-cover object-center"
+                                controls
+                                playsInline
+                              />
+                            ) : (
+                              <img
+                                src={experience.image || "/placeholder.svg"}
+                                alt={experience.title}
+                                className="absolute inset-0 w-full h-full object-cover object-center"
+                              />
+                            )}
+                          </div>
+                          <div className="p-4 md:p-6 flex flex-col flex-grow">
+                            <div className="relative group mb-2 md:mb-3">
+                              <h3 className="text-lg md:text-xl font-bold text-white line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                                {experience.title}
+                              </h3>
+                              <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                            </div>
 
-                    <div className="relative group/desc flex-grow">
-                      <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
-                        {experience.description}
-                      </p>
-                      <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-                      <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
-                    </div>
+                            <div className="relative group/desc flex-grow">
+                              <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
+                                {experience.description}
+                              </p>
+                              <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+                              <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
+                            </div>
 
-                    <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-2 md:pl-3 mt-auto">
-                      {experience.caption}
-                    </p>
+                            <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-2 md:pl-3 mt-auto">
+                              {experience.caption}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
-              )
-            })}
+              ))}
+            </div>
           </div>
+        </div>
 
-          {/* Custom Pagination */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-4 mt-auto">
-              {/* Previous Button */}
-              <button
-                onClick={goToPrevious}
-                disabled={currentPage === 1}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                  currentPage === 1
-                    ? "bg-gray-800/50 text-gray-500 cursor-not-allowed"
-                    : "bg-gray-800/80 text-sky-300 hover:bg-sky-500/20 hover:text-sky-200 border border-sky-400/30 hover:border-sky-400/50"
-                }`}
-              >
-                <ChevronLeft className="h-4 w-4" />
-                <span className="text-sm font-medium">Previous</span>
-              </button>
+        {/* Custom Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-4 mt-auto">
+            {/* Previous Button */}
+            <button
+              onClick={goToPrevious}
+              disabled={currentPage === 1}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
+                currentPage === 1
+                  ? "bg-gray-800/50 text-gray-500 cursor-not-allowed"
+                  : "bg-gray-800/80 text-sky-300 hover:bg-sky-500/20 hover:text-sky-200 border border-sky-400/30 hover:border-sky-400/50"
+              }`}
+            >
+              <ChevronLeft className="h-4 w-4" />
+              <span className="text-sm font-medium">Previous</span>
+            </button>
 
-              {/* Dot Indicators (show only prev, current, next) */}
-              <div className="flex items-center gap-2">
-                {(() => {
-                  const dots = []
-                  if (currentPage > 1) {
-                    dots.push(
-                      <button
-                        key={currentPage - 1}
-                        onClick={() => goToPage(currentPage - 1)}
-                        className="w-3 h-3 bg-gray-600 hover:bg-sky-400/50 rounded-full hover:scale-110 transition-all duration-300"
-                        aria-label={`Go to page ${currentPage - 1}`}
-                      />
-                    )
-                  }
+            {/* Dot Indicators (show only prev, current, next) */}
+            <div className="flex items-center gap-2">
+              {(() => {
+                const dots = []
+                if (currentPage > 1) {
                   dots.push(
                     <button
-                      key={currentPage}
-                      className="w-8 h-3 bg-gradient-to-r from-sky-400 to-lavender-400 rounded-full shadow-lg shadow-sky-400/30 transition-all duration-300"
-                      aria-label={`Current page, page ${currentPage}`}
-                      disabled
+                      key={currentPage - 1}
+                      onClick={() => goToPage(currentPage - 1)}
+                      className="w-3 h-3 bg-gray-600 hover:bg-sky-400/50 rounded-full hover:scale-110 transition-all duration-300"
+                      aria-label={`Go to page ${currentPage - 1}`}
                     />
                   )
-                  if (currentPage < totalPages) {
-                    dots.push(
-                      <button
-                        key={currentPage + 1}
-                        onClick={() => goToPage(currentPage + 1)}
-                        className="w-3 h-3 bg-gray-600 hover:bg-sky-400/50 rounded-full hover:scale-110 transition-all duration-300"
-                        aria-label={`Go to page ${currentPage + 1}`}
-                      />
-                    )
-                  }
-                  return dots
-                })()}
-              </div>
-
-              {/* Next Button */}
-              <button
-                onClick={goToNext}
-                disabled={currentPage === totalPages}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                  currentPage === totalPages
-                    ? "bg-gray-800/50 text-gray-500 cursor-not-allowed"
-                    : "bg-gray-800/80 text-sky-300 hover:bg-sky-500/20 hover:text-sky-200 border border-sky-400/30 hover:border-sky-400/50"
-                }`}
-              >
-                <span className="text-sm font-medium">Next</span>
-                <ChevronRight className="h-4 w-4" />
-              </button>
+                }
+                dots.push(
+                  <button
+                    key={currentPage}
+                    className="w-8 h-3 bg-gradient-to-r from-sky-400 to-lavender-400 rounded-full shadow-lg shadow-sky-400/30 transition-all duration-300"
+                    aria-label={`Current page, page ${currentPage}`}
+                    disabled
+                  />
+                )
+                if (currentPage < totalPages) {
+                  dots.push(
+                    <button
+                      key={currentPage + 1}
+                      onClick={() => goToPage(currentPage + 1)}
+                      className="w-3 h-3 bg-gray-600 hover:bg-sky-400/50 rounded-full hover:scale-110 transition-all duration-300"
+                      aria-label={`Go to page ${currentPage + 1}`}
+                    />
+                  )
+                }
+                return dots
+              })()}
             </div>
-          )}
 
-          {/* Page Counter */}
-          <div className="text-center mt-4">
-            <span className="text-sm text-gray-400">
-              Page {currentPage} of {totalPages} • {lifeExperiences.length} experiences
-            </span>
+            {/* Next Button */}
+            <button
+              onClick={goToNext}
+              disabled={currentPage === totalPages}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
+                currentPage === totalPages
+                  ? "bg-gray-800/50 text-gray-500 cursor-not-allowed"
+                  : "bg-gray-800/80 text-sky-300 hover:bg-sky-500/20 hover:text-sky-200 border border-sky-400/30 hover:border-sky-400/50"
+              }`}
+            >
+              <span className="text-sm font-medium">Next</span>
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
+        )}
+
+        {/* Page Counter */}
+        <div className="text-center mt-4">
+          <span className="text-sm text-gray-400">
+            Page {currentPage} of {totalPages} • {lifeExperiences.length} experiences
+          </span>
         </div>
       </div>
 

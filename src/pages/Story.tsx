@@ -1,4 +1,5 @@
 import Navigation from "../components/Navigation"
+import Footer from "../components/Footer"
 import { Heart, Mountain, Star, Compass } from "lucide-react"
 
 const Story = () => {
@@ -62,15 +63,15 @@ const Story = () => {
                 <div className="border-l-4 border-rose-400 pl-4 md:pl-6">
                   <h4 className="font-bold text-white mb-2">The Pandemic Transition</h4>
                   <p className="text-sm md:text-base text-gray-300 mb-2 md:mb-3">
-                    When COVID-19 hit during my first year, the sudden shift to online learning felt overwhelming. I
-                    struggled with technology, missed the face-to-face interactions, and found it challenging to stay
-                    motivated while studying from home.
+                    Although I started college in 2022—when restrictions were slowly easing—our classes were still 
+                    conducted online. I didn’t fully experience the typical college setup during my first year, and 
+                    adjusting to virtual learning was still a challenge.
                   </p>
                   <p className="text-rose-300 font-semibold mt-2">How I overcame it:</p>
                   <p className="text-sm md:text-base text-gray-300">
-                    I created a dedicated study space at home, joined virtual study groups with classmates, and
-                    developed a strict daily routine. I also reached out to professors for help and utilized online
-                    resources to improve my digital literacy skills.
+                    I established a dedicated study space at home, stayed connected with my classmates through virtual 
+                    group chats and meetings, and followed a structured daily routine to stay on track. I also made the 
+                    most out of online platforms and resources to adapt to the demands of remote learning.
                   </p>
                 </div>
 
@@ -211,10 +212,10 @@ const Story = () => {
                     <Star className="h-4 w-4 md:h-5 md:w-5 text-lilac-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white mb-2">Pass the Licensure Examination for Teachers (LET)</h4>
+                    <h4 className="font-bold text-white mb-2">Gain Teaching Experience in a Private School</h4>
                     <p className="text-sm md:text-base text-gray-300">
-                      I plan to take intensive review classes and dedicate focused study time to pass the LET with
-                      flying colors.
+                      Right after graduation, I plan to apply for a teaching position in a private school to gain practical 
+                      classroom experience and build my confidence as an educator.
                     </p>
                   </div>
                 </div>
@@ -224,10 +225,10 @@ const Story = () => {
                     <Star className="h-4 w-4 md:h-5 md:w-5 text-lilac-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white mb-2">Begin Teaching Career</h4>
+                    <h4 className="font-bold text-white mb-2">Review and Pass the Licensure Examination for Teachers (LET)</h4>
                     <p className="text-sm md:text-base text-gray-300">
-                      Apply for teaching positions in public schools, preferably in underserved communities where I can
-                      make the most impact.
+                      I aim to enroll in a comprehensive review program and create a focused study routine to ensure I 
+                      pass the LET and become a licensed professional teacher.
                     </p>
                   </div>
                 </div>
@@ -237,10 +238,10 @@ const Story = () => {
                     <Star className="h-4 w-4 md:h-5 md:w-5 text-lilac-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white mb-2">Continue Professional Development</h4>
+                    <h4 className="font-bold text-white mb-2">Engage in Professional Development</h4>
                     <p className="text-sm md:text-base text-gray-300">
-                      Attend workshops, seminars, and training programs to enhance my teaching skills and stay updated
-                      with educational trends.
+                      I plan to attend relevant seminars, workshops, and trainings to continuously improve my teaching 
+                      skills and stay updated with modern strategies in Social Studies education.
                     </p>
                   </div>
                 </div>
@@ -257,10 +258,10 @@ const Story = () => {
                     <Compass className="h-4 w-4 md:h-5 md:w-5 text-rose-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white mb-2">Pursue Master's Degree</h4>
+                    <h4 className="font-bold text-white mb-2">Pursue a Master's Degree in History</h4>
                     <p className="text-sm md:text-base text-gray-300">
-                      Enroll in a Master's program in Educational Leadership or Curriculum Development to deepen my
-                      expertise and prepare for leadership roles.
+                      To deepen my knowledge and expertise, I aspire to enroll in a graduate program focused on History 
+                      or Social Studies Education.
                     </p>
                   </div>
                 </div>
@@ -270,10 +271,10 @@ const Story = () => {
                     <Compass className="h-4 w-4 md:h-5 md:w-5 text-rose-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white mb-2">Educational Leadership Role</h4>
+                    <h4 className="font-bold text-white mb-2">Advance to Doctoral Studies</h4>
                     <p className="text-sm md:text-base text-gray-300">
-                      Aspire to become a department head or curriculum coordinator to influence educational policy and
-                      mentor new teachers.
+                      After completing my master’s degree, I plan to pursue a Ph.D. in a related field to further contribute 
+                      to academic research and professional practice.
                     </p>
                   </div>
                 </div>
@@ -283,10 +284,10 @@ const Story = () => {
                     <Compass className="h-4 w-4 md:h-5 md:w-5 text-rose-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white mb-2">Contribute to Education Research</h4>
+                    <h4 className="font-bold text-white mb-2">Study Law</h4>
                     <p className="text-sm md:text-base text-gray-300">
-                      Conduct research on innovative teaching methods in Social Studies and publish findings to
-                      contribute to the field of education.
+                      As a long-term goal, I am also interested in studying Law to broaden my understanding of civic 
+                      structures and possibly integrate legal perspectives into my advocacy or teaching.
                     </p>
                   </div>
                 </div>
@@ -347,6 +348,7 @@ const Story = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

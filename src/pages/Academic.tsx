@@ -1,4 +1,5 @@
 import Navigation from "../components/Navigation"
+import Footer from "../components/Footer"
 import TimelineCard from "../components/TimelineCard"
 import { BookOpen, FileText, User } from "lucide-react"
 
@@ -366,6 +367,7 @@ const Academic = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

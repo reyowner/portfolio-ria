@@ -1,9 +1,23 @@
-import { Link } from "react-router-dom"
-import { Separator } from "@/components/ui/separator"
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram, Heart, ExternalLink, Star, Users, Facebook, BookOpen } from "lucide-react"
+import { Link } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Instagram,
+  Heart,
+  ExternalLink,
+  Star,
+  Users,
+  Facebook,
+  BookOpen,
+} from "lucide-react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const navigationLinks = [
     { name: "Home", path: "/" },
@@ -12,21 +26,41 @@ const Footer = () => {
     { name: "University Life", path: "/university-life" },
     { name: "Grades", path: "/grades" },
     { name: "My Story", path: "/story" },
-  ]
+  ];
 
   const socialLinks = [
-    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/wriality", color: "hover:text-blue-500" },
-    { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/maria-frances-albano-93700826b/", color: "hover:text-blue-600" },
-    { name: "Twitter", icon: Twitter, href: "https://x.com/mariyaparanses?t=t2lAO111knPFCclaVKzWKQ&s=09", color: "hover:text-blue-400" },
-    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/mariyaparanses", color: "hover:text-pink-600" },
-  ]
+    {
+      name: "Facebook",
+      icon: Facebook,
+      href: "https://www.facebook.com/wriality",
+      color: "hover:text-blue-500",
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/maria-frances-albano-93700826b/",
+      color: "hover:text-blue-600",
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      href: "https://x.com/mariyaparanses?t=t2lAO111knPFCclaVKzWKQ&s=09",
+      color: "hover:text-blue-400",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      href: "https://www.instagram.com/mariyaparanses",
+      color: "hover:text-pink-600",
+    },
+  ];
 
   const quickLinks = [
     { name: "About Me", href: "/story" },
     { name: "Contact", href: "#contact" },
     { name: "Resume", href: "#resume" },
     { name: "Projects", href: "/activities" },
-  ]
+  ];
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-950 to-gray-900 border-t border-gray-800/60 backdrop-blur-md shadow-2xl shadow-rose-500/10">
@@ -41,7 +75,8 @@ const Footer = () => {
                   Portfolio
                 </h3>
                 <p className="mt-3 text-gray-300 text-sm leading-relaxed">
-                  Showcasing my academic journey, activities, and personal growth at PUP.
+                  Showcasing my academic journey, activities, and personal
+                  growth at PUP.
                 </p>
               </div>
 
@@ -53,7 +88,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center text-sm text-gray-400 hover:text-rose-400 transition-colors">
                   <Phone className="w-4 h-4 mr-3 flex-shrink-0" />
-                  <span>+63 968 494 8118</span>
+                  <span>+63 976 530 7222</span>
                 </div>
                 <div className="flex items-center text-sm text-gray-400 hover:text-rose-400 transition-colors">
                   <MapPin className="w-4 h-4 mr-3 flex-shrink-0" />
@@ -64,7 +99,9 @@ const Footer = () => {
 
             {/* Navigation Links */}
             <div className="lg:col-span-1">
-              <h4 className="text-lg font-semibold text-white mb-6">Navigation</h4>
+              <h4 className="text-lg font-semibold text-white mb-6">
+                Navigation
+              </h4>
               <ul className="space-y-3">
                 {navigationLinks.map((link) => (
                   <li key={link.path}>
@@ -72,7 +109,9 @@ const Footer = () => {
                       to={link.path}
                       className="text-sm text-gray-300 hover:text-rose-400 transition-colors duration-200 flex items-center group"
                     >
-                      <span className="group-hover:translate-x-1 transition-transform duration-200">{link.name}</span>
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {link.name}
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -81,34 +120,55 @@ const Footer = () => {
 
             {/* Core Values Section */}
             <div className="lg:col-span-1">
-              <h4 className="text-lg font-semibold text-white mb-6">Core Values</h4>
+              <h4 className="text-lg font-semibold text-white mb-6">
+                Core Values
+              </h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <Star className="w-5 h-5 text-yellow-400 flex-shrink-0" />
                   <div>
-                    <span className="font-semibold text-white text-sm">Excellence</span>
-                    <p className="text-xs text-gray-300">Striving for the highest standards in all academic and personal pursuits.</p>
+                    <span className="font-semibold text-white text-sm">
+                      Excellence
+                    </span>
+                    <p className="text-xs text-gray-300">
+                      Striving for the highest standards in all academic and
+                      personal pursuits.
+                    </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Users className="w-5 h-5 text-mint-400 flex-shrink-0" />
                   <div>
-                    <span className="font-semibold text-white text-sm">Collaboration</span>
-                    <p className="text-xs text-gray-300">Working together to achieve shared goals and foster community.</p>
+                    <span className="font-semibold text-white text-sm">
+                      Collaboration
+                    </span>
+                    <p className="text-xs text-gray-300">
+                      Working together to achieve shared goals and foster
+                      community.
+                    </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Heart className="w-5 h-5 text-rose-400 flex-shrink-0" />
                   <div>
-                    <span className="font-semibold text-white text-sm">Empathy</span>
-                    <p className="text-xs text-gray-300">Valuing compassion and understanding in every interaction.</p>
+                    <span className="font-semibold text-white text-sm">
+                      Empathy
+                    </span>
+                    <p className="text-xs text-gray-300">
+                      Valuing compassion and understanding in every interaction.
+                    </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <BookOpen className="w-5 h-5 text-sky-400 flex-shrink-0" />
                   <div>
-                    <span className="font-semibold text-white text-sm">Lifelong Learning</span>
-                    <p className="text-xs text-gray-300">Embracing growth and continuous education as a way of life.</p>
+                    <span className="font-semibold text-white text-sm">
+                      Lifelong Learning
+                    </span>
+                    <p className="text-xs text-gray-300">
+                      Embracing growth and continuous education as a way of
+                      life.
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -116,12 +176,14 @@ const Footer = () => {
 
             {/* Social Links & Portfolio Highlights */}
             <div className="lg:col-span-1">
-              <h4 className="text-lg font-semibold text-white mb-6">Portfolio Highlights</h4>
+              <h4 className="text-lg font-semibold text-white mb-6">
+                Portfolio Highlights
+              </h4>
 
               {/* Social Media Links */}
               <div className="flex space-x-4 mb-6">
                 {socialLinks.map((social) => {
-                  const IconComponent = social.icon
+                  const IconComponent = social.icon;
                   return (
                     <a
                       key={social.name}
@@ -131,7 +193,7 @@ const Footer = () => {
                     >
                       <IconComponent className="w-5 h-5" />
                     </a>
-                  )
+                  );
                 })}
               </div>
 
@@ -140,22 +202,37 @@ const Footer = () => {
                 <div className="flex items-start gap-3">
                   <Star className="w-6 h-6 text-rose-400 flex-shrink-0" />
                   <div>
-                    <h5 className="text-sm font-semibold text-white mb-1">Academic Excellence</h5>
-                    <p className="text-xs text-gray-300">Consistent President's Lister and awardee in academic competitions.</p>
+                    <h5 className="text-sm font-semibold text-white mb-1">
+                      Academic Excellence
+                    </h5>
+                    <p className="text-xs text-gray-300">
+                      Consistent President's Lister and awardee in academic
+                      competitions.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Users className="w-6 h-6 text-mint-400 flex-shrink-0" />
                   <div>
-                    <h5 className="text-sm font-semibold text-white mb-1">Leadership & Service</h5>
-                    <p className="text-xs text-gray-300">Active leader and organizer in student organizations and community events.</p>
+                    <h5 className="text-sm font-semibold text-white mb-1">
+                      Leadership & Service
+                    </h5>
+                    <p className="text-xs text-gray-300">
+                      Active leader and organizer in student organizations and
+                      community events.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Heart className="w-6 h-6 text-rose-400 flex-shrink-0" />
                   <div>
-                    <h5 className="text-sm font-semibold text-white mb-1">Passion for Growth</h5>
-                    <p className="text-xs text-gray-300">Driven by a love for learning, teaching, and making a positive impact.</p>
+                    <h5 className="text-sm font-semibold text-white mb-1">
+                      Passion for Growth
+                    </h5>
+                    <p className="text-xs text-gray-300">
+                      Driven by a love for learning, teaching, and making a
+                      positive impact.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -177,7 +254,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

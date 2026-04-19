@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import Hero from "../components/Hero"
-import Navigation from "../components/Navigation"
-import Footer from "../components/Footer"
-import { Link } from "react-router-dom"
+import Hero from "../components/Hero";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 import {
   BookOpen,
   Users,
@@ -17,140 +17,163 @@ import {
   Star,
   TrendingUp,
   Award,
-} from "lucide-react"
-import { useState, useEffect, useRef } from "react"
+} from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const Index = () => {
-  const [portfolioPage, setPortfolioPage] = useState(1)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const carouselRef = useRef<HTMLDivElement>(null)
-  const dragStartX = useRef<number | null>(null)
-  const dragCurrentX = useRef<number | null>(null)
-  const [dragOffset, setDragOffset] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
-  const dragStartTime = useRef<number | null>(null)
+  const [portfolioPage, setPortfolioPage] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const dragStartX = useRef<number | null>(null);
+  const dragCurrentX = useRef<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartTime = useRef<number | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+      setIsMobile(window.innerWidth < 768);
+    };
 
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Drag/Swipe handlers (mouse and touch)
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    setIsDragging(true)
-    if ('touches' in e) {
-      dragStartX.current = e.touches[0].clientX
+    setIsDragging(true);
+    if ("touches" in e) {
+      dragStartX.current = e.touches[0].clientX;
     } else {
-      dragStartX.current = e.clientX
+      dragStartX.current = e.clientX;
     }
-    dragCurrentX.current = dragStartX.current
-    dragStartTime.current = Date.now()
-  }
+    dragCurrentX.current = dragStartX.current;
+    dragStartTime.current = Date.now();
+  };
 
   const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!isDragging || dragStartX.current === null) return
-    let clientX
-    if ('touches' in e) {
-      clientX = e.touches[0].clientX
+    if (!isDragging || dragStartX.current === null) return;
+    let clientX;
+    if ("touches" in e) {
+      clientX = e.touches[0].clientX;
     } else {
-      clientX = e.clientX
+      clientX = e.clientX;
     }
-    dragCurrentX.current = clientX
-    setDragOffset(clientX - dragStartX.current)
-  }
+    dragCurrentX.current = clientX;
+    setDragOffset(clientX - dragStartX.current);
+  };
 
   const handleDragEnd = () => {
-    if (!isDragging || dragStartX.current === null || dragCurrentX.current === null || dragStartTime.current === null) {
-      setIsDragging(false)
-      setDragOffset(0)
-      return
+    if (
+      !isDragging ||
+      dragStartX.current === null ||
+      dragCurrentX.current === null ||
+      dragStartTime.current === null
+    ) {
+      setIsDragging(false);
+      setDragOffset(0);
+      return;
     }
-    const distance = dragCurrentX.current - dragStartX.current
-    const duration = Date.now() - dragStartTime.current
-    const velocity = Math.abs(distance) / duration // px/ms
-    const threshold = 25
-    const velocityThreshold = 0.5 // px/ms
-    let navigated = false
-    if (distance < -threshold || (distance < 0 && velocity > velocityThreshold)) {
-      handleNextSlide()
-      navigated = true
-    } else if (distance > threshold || (distance > 0 && velocity > velocityThreshold)) {
-      handlePrevSlide()
-      navigated = true
+    const distance = dragCurrentX.current - dragStartX.current;
+    const duration = Date.now() - dragStartTime.current;
+    const velocity = Math.abs(distance) / duration; // px/ms
+    const threshold = 25;
+    const velocityThreshold = 0.5; // px/ms
+    let navigated = false;
+    if (
+      distance < -threshold ||
+      (distance < 0 && velocity > velocityThreshold)
+    ) {
+      handleNextSlide();
+      navigated = true;
+    } else if (
+      distance > threshold ||
+      (distance > 0 && velocity > velocityThreshold)
+    ) {
+      handlePrevSlide();
+      navigated = true;
     }
-    setIsDragging(false)
-    setDragOffset(0)
-    dragStartX.current = null
-    dragCurrentX.current = null
-    dragStartTime.current = null
+    setIsDragging(false);
+    setDragOffset(0);
+    dragStartX.current = null;
+    dragCurrentX.current = null;
+    dragStartTime.current = null;
     // If not navigated, snap back with animation (already handled by transition class)
-  }
+  };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout
-    return () => clearInterval(interval)
-  }, [portfolioPage])
+    let interval: NodeJS.Timeout;
+    return () => clearInterval(interval);
+  }, [portfolioPage]);
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
-        handlePrevSlide()
+        handlePrevSlide();
       } else if (e.key === "ArrowRight") {
-        handleNextSlide()
+        handleNextSlide();
       }
-    }
+    };
 
-    window.addEventListener("keydown", handleKeyPress)
-    return () => window.removeEventListener("keydown", handleKeyPress)
-  }, [portfolioPage])
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [portfolioPage]);
 
   const handleNextSlide = () => {
-    if (isTransitioning) return
-    setIsTransitioning(true)
-    setPortfolioPage((prev) => (prev === portfolioSections.length ? 1 : prev + 1))
-    setTimeout(() => setIsTransitioning(false), 500)
-  }
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setPortfolioPage((prev) =>
+      prev === portfolioSections.length ? 1 : prev + 1,
+    );
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
   const handlePrevSlide = () => {
-    if (isTransitioning) return
-    setIsTransitioning(true)
-    setPortfolioPage((prev) => (prev === 1 ? portfolioSections.length : prev - 1))
-    setTimeout(() => setIsTransitioning(false), 500)
-  }
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setPortfolioPage((prev) =>
+      prev === 1 ? portfolioSections.length : prev - 1,
+    );
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
   const goToSlide = (index: number) => {
-    if (isTransitioning || index === portfolioPage) return
-    setIsTransitioning(true)
-    setPortfolioPage(index)
-    setTimeout(() => setIsTransitioning(false), 500)
-  }
+    if (isTransitioning || index === portfolioPage) return;
+    setIsTransitioning(true);
+    setPortfolioPage(index);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
 
-  const [portfolioItemsPerPage, setPortfolioItemsPerPage] = useState(window.innerWidth >= 1024 ? 2 : 1)
+  const [portfolioItemsPerPage, setPortfolioItemsPerPage] = useState(
+    window.innerWidth >= 1024 ? 2 : 1,
+  );
 
   useEffect(() => {
     const handleResize = () => {
-      setPortfolioItemsPerPage(window.innerWidth >= 1024 ? 2 : 1)
-    }
+      setPortfolioItemsPerPage(window.innerWidth >= 1024 ? 2 : 1);
+    };
 
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const portfolioSections = [
     {
       title: "Academic Journey",
-      description: "From application to enrollment and through my coursework in the BSED-SS program",
+      description:
+        "From student to future educator—shaped by learning, practice, and purpose.",
       icon: BookOpen,
       path: "/academic",
       image: "/academic-journey.png",
-      features: ["Application Process", "Enrollment Experience", "Course Progression", "Model Professors"],
+      features: [
+        "Application Process",
+        "Enrollment Experience",
+        "Course Progression",
+        "Model Professors",
+      ],
       gradient: "from-peach-500/20 to-coral-500/20",
       iconBg: "from-peach-400 to-coral-400",
       borderColor: "border-peach-400/30",
@@ -158,10 +181,16 @@ const Index = () => {
     },
     {
       title: "Activities & Involvement",
-      description: "Co-curricular and extra-curricular activities that enriched my university experience",
+      description:
+        "Co-curricular and extra-curricular activities that enriched my university experience",
       icon: Users,
       path: "/activities",
-      features: ["Student Organizations", "Community Service", "Leadership Roles", "Skills Development"],
+      features: [
+        "Student Organizations",
+        "Community Service",
+        "Leadership Roles",
+        "Skills Development",
+      ],
       gradient: "from-mint-500/20 to-sage-500/20",
       iconBg: "from-mint-400 to-sage-400",
       borderColor: "border-mint-400/30",
@@ -169,10 +198,16 @@ const Index = () => {
     },
     {
       title: "University Life",
-      description: "Memorable moments and experiences that shaped my college journey",
+      description:
+        "Memorable moments and experiences that shaped my college journey",
       icon: School,
       path: "/university-life",
-      features: ["Campus Experiences", "Friendships", "University Values", "Personal Growth"],
+      features: [
+        "Campus Experiences",
+        "Friendships",
+        "University Values",
+        "Personal Growth",
+      ],
       gradient: "from-sky-500/20 to-lavender-500/20",
       iconBg: "from-sky-400 to-lavender-400",
       borderColor: "border-sky-400/30",
@@ -180,10 +215,16 @@ const Index = () => {
     },
     {
       title: "Grades",
-      description: "Academic performance records and constructive feedback from professors",
+      description:
+        "Academic performance records and constructive feedback from professors",
       icon: FileText,
       path: "/grades",
-      features: ["Grade Records", "Professor Feedback", "Sample Papers", "Academic Goals"],
+      features: [
+        "Grade Records",
+        "Professor Feedback",
+        "Sample Papers",
+        "Academic Goals",
+      ],
       gradient: "from-lavender-500/20 to-lilac-500/20",
       iconBg: "from-lavender-400 to-lilac-400",
       borderColor: "border-lavender-400/30",
@@ -191,20 +232,26 @@ const Index = () => {
     },
     {
       title: "My Story",
-      description: "Personal narrative of challenges overcome and future aspirations",
+      description:
+        "Personal narrative of challenges overcome and future aspirations",
       icon: Heart,
       path: "/story",
-      features: ["Personal Challenges", "Growth & Learning", "Future Plans", "Teaching Vision"],
+      features: [
+        "Personal Challenges",
+        "Growth & Learning",
+        "Future Plans",
+        "Teaching Vision",
+      ],
       gradient: "from-rose-500/20 to-pink-500/20",
       iconBg: "from-rose-400 to-pink-400",
       borderColor: "border-rose-400/30",
       shadowColor: "shadow-rose-400/20",
     },
-  ]
+  ];
 
   const achievements = [
     {
-      number: "5x",
+      number: "7x",
       label: "President's Lister",
       description: "Consistent academic excellence",
       icon: Award,
@@ -214,9 +261,9 @@ const Index = () => {
       shadowColor: "shadow-coral-400/20",
     },
     {
-      number: "42",
+      number: "57",
       label: "Courses Completed",
-      description: "Core education and social studies subjects",
+      description: "Completed subjects across all eight semesters",
       icon: BookOpen,
       gradient: "from-sky-500/20 to-lavender-500/20",
       iconColor: "text-lavender-400",
@@ -233,7 +280,7 @@ const Index = () => {
       borderColor: "border-sage-400/30",
       shadowColor: "shadow-sage-400/20",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -245,7 +292,9 @@ const Index = () => {
         <div className="text-center mb-12 md:mb-20">
           <div className="inline-flex items-center bg-gradient-to-r from-rose-500/20 to-lavender-500/20 rounded-full px-4 md:px-6 py-2 md:py-3 border border-rose-400/30 mb-6 md:mb-8 backdrop-blur-sm">
             <Star className="h-4 w-4 md:h-5 md:w-5 text-rose-400 mr-2" />
-            <span className="text-sm md:text-base text-rose-300 font-semibold">Welcome to my Digital Portfolio</span>
+            <span className="text-sm md:text-base text-rose-300 font-semibold">
+              Welcome to my Digital Portfolio
+            </span>
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 md:mb-8 bg-gradient-to-r from-rose-300 to-lavender-300 bg-clip-text text-transparent">
@@ -254,17 +303,18 @@ const Index = () => {
           <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-rose-400 to-lavender-400 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-rose-400/50"></div>
 
           <p className="text-base md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            This digital portfolio chronicles my transformative experience as a Bachelor of Secondary Education - Social
-            Studies student at the Polytechnic University of the Philippines. From academic challenges to personal
-            growth, from classroom learning to community service, every moment has shaped me into the educator I'm
-            becoming.
+            This digital portfolio chronicles my full journey as a Bachelor of
+            Secondary Education - Social Studies student at the Polytechnic
+            University of the Philippines. With all coursework completed, thesis
+            defended, and internship finished, this portfolio reflects both my
+            academic foundations and my readiness for professional practice.
           </p>
         </div>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-20">
           {achievements.map((achievement, index) => {
-            const Icon = achievement.icon
+            const Icon = achievement.icon;
             return (
               <div
                 key={index}
@@ -273,7 +323,9 @@ const Index = () => {
                 <div
                   className={`inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-r ${achievement.gradient} mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md border border-gray-700/50`}
                 >
-                  <Icon className={`h-6 w-6 md:h-8 md:w-8 ${achievement.iconColor}`} />
+                  <Icon
+                    className={`h-6 w-6 md:h-8 md:w-8 ${achievement.iconColor}`}
+                  />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-rose-300 transition-colors duration-300">
                   {achievement.number}
@@ -286,7 +338,7 @@ const Index = () => {
                 </div>
                 <div className="w-0 h-1 bg-gradient-to-r from-rose-400 to-lavender-400 group-hover:w-full transition-all duration-500 mt-4 mx-auto rounded-full"></div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
@@ -297,7 +349,9 @@ const Index = () => {
           <div className="text-center mb-20">
             <div className="inline-flex items-center bg-gradient-to-r from-rose-500/20 to-lavender-500/20 rounded-full px-6 py-3 border border-rose-400/30 mb-8 backdrop-blur-sm">
               <GraduationCap className="h-5 w-5 text-rose-400 mr-2" />
-              <span className="text-rose-300 font-semibold">Explore My Portfolio</span>
+              <span className="text-rose-300 font-semibold">
+                Explore My Portfolio
+              </span>
             </div>
 
             <h2 className="text-5xl font-bold text-white mb-8 bg-gradient-to-r from-rose-300 to-lavender-300 bg-clip-text text-transparent">
@@ -306,7 +360,8 @@ const Index = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-lavender-400 mx-auto mb-8 rounded-full shadow-lg shadow-rose-400/50"></div>
 
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Discover the comprehensive documentation of my educational journey through these key sections
+              Discover the comprehensive documentation of my educational journey
+              through these key sections
             </p>
 
             {/* Portfolio Navigation Summary */}
@@ -318,7 +373,9 @@ const Index = () => {
                   className="group inline-flex items-center px-4 py-2 bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-600/30 hover:border-rose-400/50 transition-all duration-300 hover:scale-105"
                 >
                   <section.icon className="h-4 w-4 mr-2 text-gray-400 group-hover:text-rose-300" />
-                  <span className="text-sm text-gray-400 group-hover:text-white">{section.title}</span>
+                  <span className="text-sm text-gray-400 group-hover:text-white">
+                    {section.title}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -330,7 +387,9 @@ const Index = () => {
             {isMobile && (
               <div className="text-center mb-6">
                 <div className="inline-flex items-center bg-gray-800/60 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-600/30">
-                  <span className="text-xs text-gray-400">← Swipe to navigate →</span>
+                  <span className="text-xs text-gray-400">
+                    ← Swipe to navigate →
+                  </span>
                 </div>
               </div>
             )}
@@ -346,17 +405,22 @@ const Index = () => {
               onTouchStart={handleDragStart}
               onTouchMove={handleDragMove}
               onTouchEnd={handleDragEnd}
-              style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+              style={{ cursor: isDragging ? "grabbing" : "grab" }}
             >
               {/* Carousel Track */}
               <div
-                className={`flex transition-transform ${isDragging ? 'duration-0' : 'duration-500 ease-in-out'}`}
-                style={{ transform: `translateX(calc(-${(portfolioPage - 1) * 100}% + ${dragOffset}px))` }}
+                className={`flex transition-transform ${isDragging ? "duration-0" : "duration-500 ease-in-out"}`}
+                style={{
+                  transform: `translateX(calc(-${(portfolioPage - 1) * 100}% + ${dragOffset}px))`,
+                }}
               >
                 {portfolioSections.map((section, index) => {
-                  const Icon = section.icon
+                  const Icon = section.icon;
                   return (
-                    <div key={index} className="w-full flex-shrink-0 p-4 md:p-8">
+                    <div
+                      key={index}
+                      className="w-full flex-shrink-0 p-4 md:p-8"
+                    >
                       <div
                         className={`group bg-gray-800/90 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl ${section.shadowColor} overflow-hidden hover:shadow-3xl transition-all duration-500 border ${section.borderColor} hover:border-rose-400/50 hover:transform hover:scale-[1.02] max-w-4xl mx-auto`}
                       >
@@ -374,7 +438,9 @@ const Index = () => {
                             >
                               <Icon className="h-8 w-8 md:h-10 md:w-10 text-white" />
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white">{section.title}</h3>
+                            <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white">
+                              {section.title}
+                            </h3>
                             <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
                               {section.description}
                             </p>
@@ -421,7 +487,7 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -452,7 +518,9 @@ const Index = () => {
               <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-rose-400 to-lavender-400 rounded-full transition-all duration-500 ease-out shadow-lg shadow-rose-400/30"
-                  style={{ width: `${(portfolioPage / portfolioSections.length) * 100}%` }}
+                  style={{
+                    width: `${(portfolioPage / portfolioSections.length) * 100}%`,
+                  }}
                 ></div>
               </div>
             </div>
@@ -491,19 +559,25 @@ const Index = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center bg-gradient-to-r from-rose-500/20 to-lavender-500/20 rounded-full px-4 md:px-6 py-2 md:py-3 border border-rose-400/30 mb-6 md:mb-8 backdrop-blur-sm">
             <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-rose-400 mr-2" />
-            <span className="text-sm md:text-base text-rose-300 font-semibold">My Mission</span>
+            <span className="text-sm md:text-base text-rose-300 font-semibold">
+              My Mission
+            </span>
           </div>
 
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-10 text-white">My Mission as a Future Educator</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-10 text-white">
+            My Mission as a Future Educator
+          </h2>
 
           <div className="bg-gray-800/70 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-10 border border-rose-400/30 shadow-2xl shadow-rose-500/20">
             <blockquote className="text-lg md:text-2xl leading-relaxed mb-6 md:mb-8 text-gray-300 italic">
-              "To inspire and empower students through engaging Social Studies education that connects the past with the
-              present, fostering critical thinking, cultural awareness, and active citizenship."
+              "To inspire and empower students through engaging Social Studies
+              education that connects the past with the present, fostering
+              critical thinking, cultural awareness, and active citizenship."
             </blockquote>
             <p className="text-base md:text-lg text-gray-400">
-              Every experience documented in this portfolio has contributed to this mission, preparing me to make a
-              meaningful difference in the lives of my future students.
+              Every experience documented in this portfolio has contributed to
+              this mission, preparing me to make a meaningful difference in the
+              lives of my future students.
             </p>
           </div>
         </div>
@@ -514,7 +588,9 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center bg-gradient-to-r from-rose-500/20 to-lavender-500/20 rounded-full px-4 md:px-6 py-2 md:py-3 border border-rose-400/30 mb-6 md:mb-8 backdrop-blur-sm">
             <Star className="h-4 w-4 md:h-5 md:w-5 text-rose-400 mr-2" />
-            <span className="text-sm md:text-base text-rose-300 font-semibold">Ready to Explore?</span>
+            <span className="text-sm md:text-base text-rose-300 font-semibold">
+              Ready to Explore?
+            </span>
           </div>
 
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 md:mb-8 bg-gradient-to-r from-rose-300 to-lavender-300 bg-clip-text text-transparent">
@@ -523,8 +599,9 @@ const Index = () => {
           <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-rose-400 to-lavender-400 mx-auto mb-6 md:mb-8 rounded-full shadow-lg shadow-rose-400/50"></div>
 
           <p className="text-base md:text-xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto">
-            Take a journey through my university experience and discover how each challenge, achievement, and moment has
-            shaped my path to becoming an educator.
+            Take a journey through my university experience and discover how
+            each challenge, achievement, and moment has shaped my path to
+            becoming an educator.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
@@ -547,7 +624,7 @@ const Index = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

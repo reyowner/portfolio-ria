@@ -1,89 +1,82 @@
-import Navigation from "../components/Navigation"
-import Footer from "../components/Footer"
-import TimelineCard from "../components/TimelineCard"
-import { BookOpen, FileText, User } from "lucide-react"
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import {
+  BookOpen,
+  User,
+  Trophy,
+  GraduationCap,
+  Camera,
+  ExternalLink,
+} from "lucide-react";
 
 const Academic = () => {
-  const academicJourney = [
+  const keyMilestones = [
     {
-      title: "Application Process",
-      date: "December 2021",
-      description:
-        "The entire application process was relatively smooth—the portal was easy to navigate and more accessible compared to the other universities I applied to. I remember choosing five education-related programs, mostly because I was trying to avoid quota courses. Honestly, PUP wasn't my first choice. It was my backup. But sometimes, life has other plans. What I thought was Plan B turned out to be exactly where I was meant to be.",
-      image: "/academic-journey/application.jpg",
-      imageCaption:
-        "My CAEPUP 2021 application form—my first step towards becoming a PUP student or in general, a college student",
+      title: "Thesis Defended",
+      date: "S.Y. 2025 - 2026",
+      detail:
+        "Successfully defended my undergraduate thesis, presenting both research rigor and practical classroom implications in Social Studies education.",
+      icon: Trophy,
     },
     {
-      title: "Acceptance at PUP",
-      date: "June 15, 2022",
-      description:
-        "At that very moment, it really sank in—I was officially a college student. I passed CAEPUP. I passed PUP. After months of hoping, waiting, and silently doubting myself, I finally made it. That one line of confirmation changed everything. It wasn't just about getting into a university; it was about proving to myself that I could. This was the beginning of a new chapter, and I was ready to turn the page.",
-      image: "/academic-journey/acceptance.jpg",
-      imageCaption: "Admission notice from PUP Sta. Mesa confirming my acceptance into the BSEd Social Studies program",
+      title: "Internship Completed",
+      date: "4th Year - 2nd Semester",
+      detail:
+        "Completed practice teaching and internship requirements, applying pedagogy, classroom management, and learner-centered strategies in real teaching environments.",
+      icon: GraduationCap,
     },
     {
-      title: "First Step",
-      date: "August 31, 2022",
-      description:
-        "On the last day of enrollment during the pandemic, I submitted my documents to PUP under the rain—with the help of my sister, who gave me a quick tour of her own college memories. That moment marked the start of my journey toward independence. Seeing the PUP gate for the first time, I knew I was about to begin something life-changing. Looking back, I'm grateful I took that first step.",
-      image: "/academic-journey/first-step.jpg",
-      imageCaption:
-        "We waited outside PUP in the rain during enrollment, unable to enter due to strict safety protocols",
+      title: "Graduating Candidate",
+      date: "Class of 2026",
+      detail:
+        "Now in the final stage of the BSEd Social Studies program, carrying lessons from PUP into my transition from student to professional educator.",
+      icon: BookOpen,
     },
-    {
-      title: "Enrollment Process (Officially an Iskolar ng Bayan)",
-      date: "September 26, 2022",
-      description:
-        "I finally got access to my SIS account—and with that, I was officially enrolled! I can now truly call myself an Iskolar ng Bayan. After all the waiting, the stress, and the back-and-forth with documents, it finally happened. It feels surreal. I'm officially a student—and the journey has just begun.",
-      image: "/academic-journey/enrollment.jpg",
-      imageCaption:
-        "Proof of enrollment: Officially registered as a first-year BSEd Social Studies student for S.Y. 2022–2023",
-    },
-  ]
+  ];
 
-  const currentCourses = [
+  const internshipJourney = [
     {
-      name: "Assessment and Evaluation in Social Studies",
+      title: "Deployment Day",
+      phase: "Deployment",
       description:
-        "This course taught us how to create, analyze, and apply various assessment tools tailored to Social Studies. It emphasized fair, valid, and reliable evaluations to monitor student learning and improve instructional strategies.",
+        "Served as both a Field Study student and Practice Teacher at San Juan National High School on October 16, 2025, gaining firsthand exposure to the school environment and classroom dynamics during deployment.",
+      image: "/academic-journey/internship-1.jpg",
+      imageAlt: "Deployment day",
+      orientation: "landscape",
     },
     {
-      name: "Production of Social Studies Instructional Materials",
+      title: "First Day of Practice Teaching",
+      phase: "Practice Teaching",
       description:
-        "We learned how to design and produce effective, engaging, and localized instructional materials for teaching Social Studies. This course highlighted creativity and contextualization in addressing learners' diverse needs.",
+        "Began my practice teaching journey on November 24, 2025, handling both Grade 7 and Grade 10 learners while gradually building confidence in classroom management and instructional delivery.",
+      image: "/academic-journey/internship-2.jpg",
+      imageAlt: "First day of practice teaching",
+      orientation: "portrait",
     },
     {
-      name: "Trends and Issues in Social Studies",
+      title: "Final Demonstration Teaching",
+      phase: "Demonstration Teaching",
       description:
-        "This course explored current events, emerging issues, and educational reforms affecting the teaching of Social Studies. It encouraged critical thinking and reflection on how global and local developments influence classroom instruction.",
+        "Successfully conducted my final demonstration teaching on February 20, 2026, earning a rating of 4.96 out of 5.0, reflecting strong lesson execution, learner engagement, and instructional effectiveness.",
+      image: "/academic-journey/internship-3.jpg",
+      imageAlt: "Final demonstration teaching",
+      orientation: "landscape",
     },
     {
-      name: "Thesis Writing",
+      title: "Final Reflection",
+      phase: "Reflection",
       description:
-        "Focused on the fundamentals of research, this course guided us through the process of writing an undergraduate thesis—from formulating a problem, reviewing literature, designing a methodology, and writing findings.",
+        "Developed resilience, adaptability, and a deeper understanding of learner-centered instruction through continuous teaching experiences, while improving my ability to design engaging lessons and respond to diverse classroom needs.",
+      image: "/academic-journey/internship-4.jpg",
+      imageAlt: "Final reflection",
+      orientation: "portrait",
     },
-    {
-      name: "Integrative Methods in Teaching Social Studies",
-      description:
-        "We explored interdisciplinary and integrative approaches in teaching Social Studies, blending content and pedagogy across fields to create meaningful, learner-centered experiences.",
-    },
-    {
-      name: "Assessment in Learning 2",
-      description:
-        "A continuation of assessment principles, this course focused on developing performance-based tasks, interpreting data, and using assessments to inform instruction and support student growth.",
-    },
-    {
-      name: "The Teacher and the School Curriculum",
-      description:
-        "This course deepened our understanding of curriculum development and the teacher's vital role in planning, implementing, and evaluating the school curriculum in line with national standards.",
-    },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gray-900">
       <Navigation />
-      
+
       {/* Header */}
       <div className="bg-gradient-to-r from-gray-800 via-slate-800 to-gray-800 text-white py-12 md:py-16 relative overflow-hidden">
         <div className="absolute inset-0">
@@ -95,53 +88,120 @@ const Academic = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <BookOpen className="h-12 md:h-16 w-12 md:w-16 mx-auto mb-4 md:mb-6 text-peach-400 drop-shadow-lg" />
-            <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">Academic Journey</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">
+              Academic Journey
+            </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-              From application to enrollment and through my coursework - documenting my path through the BSED-SS program
+              From student to future educator—shaped by learning, practice, and
+              purpose
             </p>
           </div>
         </div>
       </div>
 
-      {/* Timeline Section */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 md:mb-12 text-center">My Academic Timeline</h2>
-        <div className="relative">
-          {academicJourney.map((item, index) => (
-            <TimelineCard
-              key={index}
-              title={item.title}
-              date={item.date}
-              description={item.description}
-              image={item.image}
-              imageCaption={item.imageCaption}
-            />
-          ))}
+      {/* Achievement Highlights */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="text-center mb-8 md:mb-12">
+          <Trophy className="h-10 md:h-12 w-10 md:w-12 mx-auto text-lavender-400 mb-3 md:mb-4" />
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+            PUP Milestones
+          </h2>
+          <p className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
+            This section highlights the biggest achievements in my journey as a
+            BSEd Social Studies student.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {keyMilestones.map((milestone, index) => {
+            const Icon = milestone.icon;
+            return (
+              <div
+                key={index}
+                className="bg-gray-800/80 backdrop-blur-sm p-5 md:p-6 rounded-xl md:rounded-2xl border border-gray-700/50 hover:border-lavender-400/30 transition-all duration-300 shadow-xl shadow-lavender-500/10"
+              >
+                <div className="w-fit p-2.5 rounded-lg bg-gradient-to-r from-lavender-500/20 to-rose-500/20 border border-lavender-400/30 mb-4">
+                  <Icon className="h-5 w-5 text-lavender-300" />
+                </div>
+                <p className="text-xs md:text-sm text-lavender-300 mb-2">
+                  {milestone.date}
+                </p>
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-2">
+                  {milestone.title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                  {milestone.detail}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Current Courses */}
+      {/* Internship Journey Gallery */}
       <div className="bg-gray-800/50 backdrop-blur-sm py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
-            <FileText className="h-10 md:h-12 w-10 md:w-12 mx-auto text-coral-400 mb-3 md:mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Current Coursework</h2>
-            <p className="text-base md:text-lg text-gray-300">Courses currently enrolled in under the Bachelor of Secondary Education Major in Social Studies program, 3rd Year - 2nd Semester</p>
+            <Camera className="h-10 md:h-12 w-10 md:w-12 mx-auto text-coral-400 mb-3 md:mb-4" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+              Internship Journey
+            </h2>
+            <p className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
+              A visual portfolio that captures my internship journey from
+              deployment day to final demonstration teaching.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {currentCourses.map((course, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {internshipJourney.map((entry, index) => (
               <div
                 key={index}
-                className={`bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 hover:shadow-xl hover:shadow-coral-500/20 transition-all duration-300 border border-gray-700/50 hover:border-coral-400/30 hover:scale-105 ${
-                  index === currentCourses.length - 1 && currentCourses.length % 3 !== 0 ? "lg:col-start-2" : ""
-                }`}
+                className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl border border-gray-700/50 hover:border-coral-400/30 shadow-xl shadow-coral-500/10 hover:shadow-2xl hover:shadow-coral-500/20 transition-all duration-300 overflow-hidden"
               >
-                <h3 className="font-semibold text-white mb-2 md:mb-3 text-base md:text-lg">{course.name}</h3>
-                <p className="text-gray-400 text-xs md:text-sm leading-relaxed">{course.description}</p>
-                <div className="w-0 h-1 bg-gradient-to-r from-coral-400 to-peach-400 group-hover:w-full transition-all duration-500 mt-3 md:mt-4 rounded-full"></div>
+                <div className="relative">
+                  <img
+                    src={entry.image}
+                    alt={entry.imageAlt}
+                    className={`w-full object-cover ${
+                      entry.orientation === "portrait"
+                        ? "h-[420px] md:h-[480px]"
+                        : "h-[260px] md:h-[320px]"
+                    }`}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/75 via-gray-900/10 to-transparent" />
+                  {/* <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-gray-900/70 border border-gray-600/40 text-xs text-coral-300">
+                    {entry.phase}
+                  </div> */}
+                </div>
+                <div className="p-4 md:p-6">
+                  <h3 className="font-semibold text-white mb-2 text-base md:text-lg">
+                    {entry.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                    {entry.description}
+                  </p>
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-8 md:mt-10 bg-gray-800/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-700/50 hover:border-sky-400/30 transition-all duration-300 p-5 md:p-7 text-center shadow-xl shadow-sky-500/10">
+            <h3 className="text-lg md:text-2xl font-bold text-white mb-2 md:mb-3">
+              Internship Project Website
+            </h3>
+            <p className="text-sm md:text-base text-gray-300 max-w-3xl mx-auto mb-4 md:mb-6">
+              Explore our intern team website for San Juan National High School,
+              including field study and teaching internship documentation.
+            </p>
+            <a
+              href="https://ssinag2026.wixsite.com/sanjuan-nhs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl bg-gradient-to-r from-sky-500/20 to-lavender-500/20 border border-sky-400/30 text-white hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-300 hover:scale-105"
+            >
+              Visit Internship Website
+              <ExternalLink className="h-4 w-4 md:h-5 md:w-5 ml-2" />
+            </a>
           </div>
         </div>
       </div>
@@ -151,8 +211,12 @@ const Academic = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <User className="h-10 md:h-12 w-10 md:w-12 mx-auto text-rose-400 mb-3 md:mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Encounters with Model Professors</h2>
-            <p className="text-base md:text-lg text-gray-300">Inspiring educators who have shaped my teaching philosophy</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+              Encounters with Model Professors
+            </h2>
+            <p className="text-base md:text-lg text-gray-300">
+              Inspiring educators who have shaped my teaching philosophy
+            </p>
           </div>
 
           <div className="space-y-8 md:space-y-12">
@@ -168,19 +232,25 @@ const Academic = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Joey T. Danting</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+                    Prof. Joey T. Danting
+                  </h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    Sir Joey has been our professor in several major courses related to Social Studies since our second
-                    year, including CWTS. He's an excellent educator whose teachings truly leave a mark. He incorporates
-                    real-life experiences in his lessons and consistently challenges our critical thinking—a skill that
-                    I believe is the most essential in the 21st century. His classes are never boring; his wit and humor
-                    are always a bonus that makes learning even more enjoyable.
+                    Sir Joey has been our professor in several major courses
+                    related to Social Studies since our second year, including
+                    CWTS. He's an excellent educator whose teachings truly leave
+                    a mark. He incorporates real-life experiences in his lessons
+                    and consistently challenges our critical thinking—a skill
+                    that I believe is the most essential in the 21st century.
+                    His classes are never boring; his wit and humor are always a
+                    bonus that makes learning even more enjoyable.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-rose-500/20 to-coral-500/20 p-3 md:p-4 rounded-lg border border-rose-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-rose-300 italic">
-                      "Critical thinking isn't just a skill—it's a way of seeing the world. Challenge your assumptions,
-                      question everything, and never stop learning."
+                      "Critical thinking isn't just a skill—it's a way of seeing
+                      the world. Challenge your assumptions, question
+                      everything, and never stop learning."
                     </p>
                   </div>
                 </div>
@@ -199,17 +269,21 @@ const Academic = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Manolito San Jose</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+                    Prof. Manolito San Jose
+                  </h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    He taught us courses related to Law and Governance. What stood out most about him was how he always
-                    ensured we were learning—not just memorizing concepts, but understanding them. His commitment to our
-                    academic growth made his classes not just informative but also meaningful.
+                    He taught us courses related to Law and Governance. What
+                    stood out most about him was how he always ensured we were
+                    learning—not just memorizing concepts, but understanding
+                    them. His commitment to our academic growth made his classes
+                    not just informative but also meaningful.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-lavender-500/20 to-sky-500/20 p-3 md:p-4 rounded-lg border border-lavender-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-lavender-300 italic">
-                      "Understanding is the key to mastery. Don't just memorize—comprehend, analyze, and apply what you
-                      learn."
+                      "Understanding is the key to mastery. Don't just
+                      memorize—comprehend, analyze, and apply what you learn."
                     </p>
                   </div>
                 </div>
@@ -228,18 +302,24 @@ const Academic = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Junior Lim</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+                    Prof. Junior Lim
+                  </h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    Prof. Lim has been one of our instructors since our second year. He's brilliant and always full of
-                    wisdom. One standout feature is his powerful and engaging speaking voice—you simply can't help but
-                    listen. He's a clear expert in the field of Economics, and he makes even the most complex topics
-                    easier to understand through well-structured discussions and examples.
+                    Prof. Lim has been one of our instructors since our second
+                    year. He's brilliant and always full of wisdom. One standout
+                    feature is his powerful and engaging speaking voice—you
+                    simply can't help but listen. He's a clear expert in the
+                    field of Economics, and he makes even the most complex
+                    topics easier to understand through well-structured
+                    discussions and examples.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-mint-500/20 to-sage-500/20 p-3 md:p-4 rounded-lg border border-mint-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-mint-300 italic">
-                      "Economics isn't just about numbers and theories—it's about understanding how the world works and
-                      making informed decisions."
+                      "Economics isn't just about numbers and theories—it's
+                      about understanding how the world works and making
+                      informed decisions."
                     </p>
                   </div>
                 </div>
@@ -258,16 +338,22 @@ const Academic = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Junie Rosales</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+                    Prof. Junie Rosales
+                  </h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    As a former dean of the College of Education, her expertise in the field shines through in every class.
-                    Her intelligence and command of the subject matter make learning feel purposeful. She brings depth to
-                    discussions and presents content with clarity and authority that only years of experience can provide.
+                    As a former dean of the College of Education, her expertise
+                    in the field shines through in every class. Her intelligence
+                    and command of the subject matter make learning feel
+                    purposeful. She brings depth to discussions and presents
+                    content with clarity and authority that only years of
+                    experience can provide.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-peach-500/20 to-coral-500/20 p-3 md:p-4 rounded-lg border border-peach-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-peach-300 italic">
-                      "Education is not just about imparting knowledge—it's about shaping minds and building character."
+                      "Education is not just about imparting knowledge—it's
+                      about shaping minds and building character."
                     </p>
                   </div>
                 </div>
@@ -286,17 +372,23 @@ const Academic = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Jamaica Gatan</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+                    Prof. Jamaica Gatan
+                  </h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    So far, she's my favorite professor. She speaks with such wisdom and grace, and she has a soothing yet
-                    commanding voice that draws you in. She was our instructor in Technology in Teaching 2, and her mastery
-                    of the course content was very evident. Every class with her felt impactful—she's not only knowledgeable
-                    but also genuinely passionate about teaching.
+                    So far, she's my favorite professor. She speaks with such
+                    wisdom and grace, and she has a soothing yet commanding
+                    voice that draws you in. She was our instructor in
+                    Technology in Teaching 2, and her mastery of the course
+                    content was very evident. Every class with her felt
+                    impactful—she's not only knowledgeable but also genuinely
+                    passionate about teaching.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-sky-500/20 to-lavender-500/20 p-3 md:p-4 rounded-lg border border-sky-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-sky-300 italic">
-                      "Teaching is an art that combines knowledge, passion, and the ability to connect with your students."
+                      "Teaching is an art that combines knowledge, passion, and
+                      the ability to connect with your students."
                     </p>
                   </div>
                 </div>
@@ -315,19 +407,25 @@ const Academic = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Carmela Asebias</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+                    Prof. Carmela Asebias
+                  </h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    She taught us Foundations of Special and Inclusive Education—one of the most eye-opening subjects in
-                    our program. What I loved most was how she allowed us to discover our own approaches to inclusive
-                    education. She empowered us to think creatively and compassionately. My favorite part was when we
-                    created a music video as our midterm output—an experience that showed us how learning can be meaningful
-                    and fun at the same time.
+                    She taught us Foundations of Special and Inclusive
+                    Education—one of the most eye-opening subjects in our
+                    program. What I loved most was how she allowed us to
+                    discover our own approaches to inclusive education. She
+                    empowered us to think creatively and compassionately. My
+                    favorite part was when we created a music video as our
+                    midterm output—an experience that showed us how learning can
+                    be meaningful and fun at the same time.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-sage-500/20 to-mint-500/20 p-3 md:p-4 rounded-lg border border-sage-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-sage-300 italic">
-                      "Inclusive education is not just about accommodating differences—it's about celebrating them and
-                      creating a space where everyone can thrive."
+                      "Inclusive education is not just about accommodating
+                      differences—it's about celebrating them and creating a
+                      space where everyone can thrive."
                     </p>
                   </div>
                 </div>
@@ -346,19 +444,25 @@ const Academic = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Prof. Marlon Agoy-Agoy</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
+                    Prof. Marlon Agoy-Agoy
+                  </h3>
                   <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 leading-relaxed">
-                    He's the only professor from a minor subject that I felt compelled to include in this list—and that
-                    says a lot. He left a strong impression during my freshman year. He taught us The Life and Works of
-                    Rizal, and his mastery of the subject was impressive. It was as if he personally knew Rizal or had
-                    long conversations with him. His storytelling, depth of knowledge, and passion for the subject made
-                    the class unforgettable.
+                    He's the only professor from a minor subject that I felt
+                    compelled to include in this list—and that says a lot. He
+                    left a strong impression during my freshman year. He taught
+                    us The Life and Works of Rizal, and his mastery of the
+                    subject was impressive. It was as if he personally knew
+                    Rizal or had long conversations with him. His storytelling,
+                    depth of knowledge, and passion for the subject made the
+                    class unforgettable.
                   </p>
                   {/* Quote */}
                   <div className="bg-gradient-to-r from-coral-500/20 to-rose-500/20 p-3 md:p-4 rounded-lg border border-coral-400/30 backdrop-blur-sm">
                     <p className="text-xs md:text-sm text-coral-300 italic">
-                      "History comes alive when we understand the human stories behind the events. Let's learn from the
-                      past to shape a better future."
+                      "History comes alive when we understand the human stories
+                      behind the events. Let's learn from the past to shape a
+                      better future."
                     </p>
                   </div>
                 </div>
@@ -369,7 +473,7 @@ const Academic = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Academic
+export default Academic;

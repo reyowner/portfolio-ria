@@ -1,39 +1,43 @@
-"use client"
+"use client";
 
-import Navigation from "../components/Navigation"
-import Footer from "../components/Footer"
-import { School, Star, Users, ChevronLeft, ChevronRight } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import { School, Star, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const UniversityLife = () => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth >= 1024 ? 2 : 1)
-  const [isMobile, setIsMobile] = useState(false)
-  const dragStartX = useRef<number | null>(null)
-  const dragCurrentX = useRef<number | null>(null)
-  const dragStartTime = useRef<number | null>(null)
-  const [dragOffset, setDragOffset] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [transitionDirection, setTransitionDirection] = useState<'left' | 'right' | null>(null)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(
+    window.innerWidth >= 1024 ? 2 : 1,
+  );
+  const [isMobile, setIsMobile] = useState(false);
+  const dragStartX = useRef<number | null>(null);
+  const dragCurrentX = useRef<number | null>(null);
+  const dragStartTime = useRef<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState<
+    "left" | "right" | null
+  >(null);
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth >= 1024 ? 2 : 1)
+      setItemsPerPage(window.innerWidth >= 1024 ? 2 : 1);
       // Reset to first page when screen size changes
-      setCurrentPage(1)
-    }
+      setCurrentPage(1);
+    };
 
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
 
-    window.addEventListener("resize", handleResize)
-    window.addEventListener("resize", checkMobile)
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", checkMobile);
     return () => {
-      window.removeEventListener("resize", handleResize)
-      window.removeEventListener("resize", checkMobile)
-    }
-  }, [])
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   const lifeExperiences = [
     {
@@ -41,14 +45,16 @@ const UniversityLife = () => {
       description:
         "My Balik Sinta experience was quite funny—we weren't really supposed to attend since we didn't have a pass. But surprisingly, we still got in! I had so much fun, especially because I got to bond with my best friends, Sarah and Zel, and finally met some of my blockmates.",
       image: "/activities/university-life/Balik-Sinta.jpg",
-      caption: "First day back on campus - bonding with friends and meeting blockmates",
+      caption:
+        "First day back on campus - bonding with friends and meeting blockmates",
     },
     {
       title: "ID Issuance & Meet-up with Friends",
       description:
         "It was the last day of ID issuance, and I chose that day on purpose because I wanted to meet up with my friends—Raine, Ace, Rei, and Ara. It felt exciting to finally get my ID and spend the day with them.",
       image: "/activities/university-life/ID-Issuance.jpg",
-      caption: "Getting my university ID and spending quality time with friends",
+      caption:
+        "Getting my university ID and spending quality time with friends",
     },
     {
       title: "First Face-to-Face Class",
@@ -62,14 +68,16 @@ const UniversityLife = () => {
       description:
         "It was our block's first team building, held at Ninoy Aquino Parks and Wildlife Center. We finally got to meet our new blockmates and spend quality time together. The day was filled with fun games, bonding activities, and memories that we'll always cherish.",
       image: "/activities/university-life/Team-Bldg.jpg",
-      caption: "Building stronger bonds through team activities at the wildlife center",
+      caption:
+        "Building stronger bonds through team activities at the wildlife center",
     },
     {
       title: "Block's First Award at COEDunong",
       description:
         "It was a proud moment for our block as we received our very first award at COEDunong. All our efforts, teamwork, and participation were recognized, and it made us feel more united and motivated. It was a reminder that even small wins are worth celebrating—especially when shared with people who work hard together.",
       image: "/activities/university-life/Block-Award.jpg",
-      caption: "Celebrating our block's first recognition at the academic contest",
+      caption:
+        "Celebrating our block's first recognition at the academic contest",
     },
     {
       title: "First Demo Teaching",
@@ -83,84 +91,107 @@ const UniversityLife = () => {
       description:
         "We defended our thesis title, 'History Without Boundary: The Integration of Non-Immersive Virtual Reality as a Pedagogical Technique in Teaching World History.' It was a nerve-wracking but fulfilling experience. Our title was accepted with minor revisions, and that moment marked the official beginning of our thesis journey.",
       image: "/activities/university-life/Thesis.jpg",
-      caption: "Successfully defending our innovative thesis proposal on VR in education",
+      caption:
+        "Successfully defending our innovative thesis proposal on VR in education",
     },
-  ]
+    {
+      title: "Thesis Defended",
+      description:
+        "Successfully defended our research titled “History without Boundary: The Integration of Non-Immersive Virtual Reality as a Pedagogical Technique in Teaching World History” on October 4, 2025, highlighting the use of innovative technology which is the NIVR to enhance student engagement and deepen historical understanding.",
+      image: "/activities/university-life/ThesisDefended.jpg",
+      caption:
+        "A proud moment—successfully defending our thesis on innovation in history education.",
+    },
+  ];
 
-  const totalPages = Math.ceil(lifeExperiences.length / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const currentExperiences = lifeExperiences.slice(startIndex, startIndex + itemsPerPage)
+  const totalPages = Math.ceil(lifeExperiences.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentExperiences = lifeExperiences.slice(
+    startIndex,
+    startIndex + itemsPerPage,
+  );
 
   const goToPage = (page: number) => {
-    if (page === currentPage) return
-    setTransitionDirection(page > currentPage ? 'left' : 'right')
-    setIsTransitioning(true)
+    if (page === currentPage) return;
+    setTransitionDirection(page > currentPage ? "left" : "right");
+    setIsTransitioning(true);
     setTimeout(() => {
-      setCurrentPage(page)
-      setIsTransitioning(false)
-    }, 300)
-  }
+      setCurrentPage(page);
+      setIsTransitioning(false);
+    }, 300);
+  };
 
   const goToPrevious = () => {
     if (currentPage > 1) {
-      goToPage(currentPage - 1)
+      goToPage(currentPage - 1);
     }
-  }
+  };
 
   const goToNext = () => {
     if (currentPage < totalPages) {
-      goToPage(currentPage + 1)
+      goToPage(currentPage + 1);
     }
-  }
+  };
 
   // Drag/Swipe handlers (mouse and touch)
   const handleDragStart = (e) => {
-    setIsDragging(true)
-    if ('touches' in e) {
-      dragStartX.current = e.touches[0].clientX
+    setIsDragging(true);
+    if ("touches" in e) {
+      dragStartX.current = e.touches[0].clientX;
     } else {
-      dragStartX.current = e.clientX
+      dragStartX.current = e.clientX;
     }
-    dragCurrentX.current = dragStartX.current
-    dragStartTime.current = Date.now()
-  }
+    dragCurrentX.current = dragStartX.current;
+    dragStartTime.current = Date.now();
+  };
   const handleDragMove = (e) => {
-    if (!isDragging || dragStartX.current === null) return
-    let clientX
-    if ('touches' in e) {
-      clientX = e.touches[0].clientX
+    if (!isDragging || dragStartX.current === null) return;
+    let clientX;
+    if ("touches" in e) {
+      clientX = e.touches[0].clientX;
     } else {
-      clientX = e.clientX
+      clientX = e.clientX;
     }
-    dragCurrentX.current = clientX
-    setDragOffset(clientX - dragStartX.current)
-  }
+    dragCurrentX.current = clientX;
+    setDragOffset(clientX - dragStartX.current);
+  };
   const handleDragEnd = () => {
-    if (!isDragging || dragStartX.current === null || dragCurrentX.current === null || dragStartTime.current === null) {
-      setIsDragging(false)
-      setDragOffset(0)
-      return
+    if (
+      !isDragging ||
+      dragStartX.current === null ||
+      dragCurrentX.current === null ||
+      dragStartTime.current === null
+    ) {
+      setIsDragging(false);
+      setDragOffset(0);
+      return;
     }
-    const distance = dragCurrentX.current - dragStartX.current
-    const duration = Date.now() - dragStartTime.current
-    const velocity = Math.abs(distance) / duration // px/ms
-    const threshold = 25
-    const velocityThreshold = 0.5 // px/ms
-    let navigated = false
-    if (distance < -threshold || (distance < 0 && velocity > velocityThreshold)) {
-      goToNext()
-      navigated = true
-    } else if (distance > threshold || (distance > 0 && velocity > velocityThreshold)) {
-      goToPrevious()
-      navigated = true
+    const distance = dragCurrentX.current - dragStartX.current;
+    const duration = Date.now() - dragStartTime.current;
+    const velocity = Math.abs(distance) / duration; // px/ms
+    const threshold = 25;
+    const velocityThreshold = 0.5; // px/ms
+    let navigated = false;
+    if (
+      distance < -threshold ||
+      (distance < 0 && velocity > velocityThreshold)
+    ) {
+      goToNext();
+      navigated = true;
+    } else if (
+      distance > threshold ||
+      (distance > 0 && velocity > velocityThreshold)
+    ) {
+      goToPrevious();
+      navigated = true;
     }
-    setIsDragging(false)
-    setDragOffset(0)
-    dragStartX.current = null
-    dragCurrentX.current = null
-    dragStartTime.current = null
+    setIsDragging(false);
+    setDragOffset(0);
+    dragStartX.current = null;
+    dragCurrentX.current = null;
+    dragStartTime.current = null;
     // If not navigated, snap back with animation (already handled by transition class)
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -177,9 +208,12 @@ const UniversityLife = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <School className="h-12 w-12 md:h-16 md:w-16 mx-auto mb-4 md:mb-6 text-sky-400 drop-shadow-lg" />
-            <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">University Life Experiences</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">
+              University Life Experiences
+            </h1>
             <p className="text-base md:text-xl text-gray-300 max-w-3xl mx-auto">
-              The memorable moments, friendships, and experiences that have shaped my college journey at PUP
+              The memorable moments, friendships, and experiences that have
+              shaped my college journey at PUP
             </p>
           </div>
         </div>
@@ -189,14 +223,20 @@ const UniversityLife = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="text-center mb-8 md:mb-12">
           <Star className="h-8 w-8 md:h-12 md:w-12 mx-auto text-lavender-400 mb-3 md:mb-4" />
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Memorable Campus Life Moments</h2>
-          <p className="text-base md:text-lg text-gray-300">Visual journey through my university experiences</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+            Memorable Campus Life Moments
+          </h2>
+          <p className="text-base md:text-lg text-gray-300">
+            Visual journey through my university experiences
+          </p>
         </div>
 
         {isMobile && (
           <div className="text-center mb-4">
             <div className="inline-flex items-center bg-gray-800/60 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-600/30">
-              <span className="text-xs text-gray-400">← Swipe to navigate →</span>
+              <span className="text-xs text-gray-400">
+                ← Swipe to navigate →
+              </span>
             </div>
           </div>
         )}
@@ -212,64 +252,73 @@ const UniversityLife = () => {
             onTouchStart={handleDragStart}
             onTouchMove={handleDragMove}
             onTouchEnd={handleDragEnd}
-            style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+            style={{ cursor: isDragging ? "grabbing" : "grab" }}
           >
             {/* Carousel Track */}
             <div
-              className={`flex transition-transform ${isDragging ? 'duration-0' : 'duration-300 ease-in-out'}`}
-              style={{ transform: `translateX(calc(-${(currentPage - 1) * 100}% + ${dragOffset}px))` }}
+              className={`flex transition-transform ${isDragging ? "duration-0" : "duration-300 ease-in-out"}`}
+              style={{
+                transform: `translateX(calc(-${(currentPage - 1) * 100}% + ${dragOffset}px))`,
+              }}
             >
               {Array.from({ length: totalPages }).map((_, pageIdx) => (
                 <div key={pageIdx} className="w-full flex-shrink-0">
-                  <div className={`flex-grow grid lg:grid-cols-2 gap-6 md:gap-8 mb-8`}>
-                    {lifeExperiences.slice(pageIdx * itemsPerPage, (pageIdx + 1) * itemsPerPage).map((experience, index) => {
-                      const globalIndex = pageIdx * itemsPerPage + index
-                      return (
-                        <div
-                          key={globalIndex}
-                          className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30 flex flex-col group"
-                        >
-                          <div className="relative w-full aspect-video">
-                            {experience.image.endsWith(".mp4") ? (
-                              <video
-                                src={experience.image}
-                                className="absolute inset-0 w-full h-full object-cover object-center"
-                                controls
-                                playsInline
-                              />
-                            ) : (
-                              <img
-                                src={experience.image || "/placeholder.svg"}
-                                alt={experience.title}
-                                className="absolute inset-0 w-full h-full object-cover object-center"
-                              />
-                            )}
-                          </div>
-                          <div className="p-4 md:p-6 flex flex-col flex-grow">
-                            <div className="relative group mb-2 md:mb-3">
-                              <h3 className="text-lg md:text-xl font-bold text-white line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
-                                {experience.title}
-                              </h3>
-                              <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                              <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                              <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                            </div>
-
-                            <div className="relative group/desc flex-grow">
-                              <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
-                                {experience.description}
-                              </p>
-                              <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-                              <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
-                            </div>
-
-                            <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-2 md:pl-3 mt-auto">
-                              {experience.caption}
-                            </p>
-                          </div>
-                        </div>
+                  <div
+                    className={`flex-grow grid lg:grid-cols-2 gap-6 md:gap-8 mb-8`}
+                  >
+                    {lifeExperiences
+                      .slice(
+                        pageIdx * itemsPerPage,
+                        (pageIdx + 1) * itemsPerPage,
                       )
-                    })}
+                      .map((experience, index) => {
+                        const globalIndex = pageIdx * itemsPerPage + index;
+                        return (
+                          <div
+                            key={globalIndex}
+                            className="bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl shadow-sky-500/10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-300 border border-gray-700/50 hover:border-sky-400/30 flex flex-col group"
+                          >
+                            <div className="relative w-full aspect-video">
+                              {experience.image.endsWith(".mp4") ? (
+                                <video
+                                  src={experience.image}
+                                  className="absolute inset-0 w-full h-full object-cover object-center"
+                                  controls
+                                  playsInline
+                                />
+                              ) : (
+                                <img
+                                  src={experience.image || "/placeholder.svg"}
+                                  alt={experience.title}
+                                  className="absolute inset-0 w-full h-full object-cover object-center"
+                                />
+                              )}
+                            </div>
+                            <div className="p-4 md:p-6 flex flex-col flex-grow">
+                              <div className="relative group mb-2 md:mb-3">
+                                <h3 className="text-lg md:text-xl font-bold text-white line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
+                                  {experience.title}
+                                </h3>
+                                <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute -top-2 left-0 w-full h-1 bg-gradient-to-r from-sky-400/0 via-sky-400/50 to-sky-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                              </div>
+
+                              <div className="relative group/desc flex-grow">
+                                <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed line-clamp-4 group-hover/desc:line-clamp-none transition-all duration-300 overflow-hidden">
+                                  {experience.description}
+                                </p>
+                                <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-gray-800/80 to-transparent opacity-100 group-hover/desc:opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+                                <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400/0 via-sky-400/30 to-sky-400/0 opacity-0 group-hover/desc:opacity-100 transition-opacity duration-300"></div>
+                              </div>
+
+                              <p className="text-xs md:text-sm text-gray-400 italic border-l-2 border-sky-400/30 pl-2 md:pl-3 mt-auto">
+                                {experience.caption}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
               ))}
@@ -297,7 +346,7 @@ const UniversityLife = () => {
             {/* Dot Indicators (show only prev, current, next) */}
             <div className="flex items-center gap-2">
               {(() => {
-                const dots = []
+                const dots = [];
                 if (currentPage > 1) {
                   dots.push(
                     <button
@@ -305,8 +354,8 @@ const UniversityLife = () => {
                       onClick={() => goToPage(currentPage - 1)}
                       className="w-3 h-3 bg-gray-600 hover:bg-sky-400/50 rounded-full hover:scale-110 transition-all duration-300"
                       aria-label={`Go to page ${currentPage - 1}`}
-                    />
-                  )
+                    />,
+                  );
                 }
                 dots.push(
                   <button
@@ -314,8 +363,8 @@ const UniversityLife = () => {
                     className="w-8 h-3 bg-gradient-to-r from-sky-400 to-lavender-400 rounded-full shadow-lg shadow-sky-400/30 transition-all duration-300"
                     aria-label={`Current page, page ${currentPage}`}
                     disabled
-                  />
-                )
+                  />,
+                );
                 if (currentPage < totalPages) {
                   dots.push(
                     <button
@@ -323,10 +372,10 @@ const UniversityLife = () => {
                       onClick={() => goToPage(currentPage + 1)}
                       className="w-3 h-3 bg-gray-600 hover:bg-sky-400/50 rounded-full hover:scale-110 transition-all duration-300"
                       aria-label={`Go to page ${currentPage + 1}`}
-                    />
-                  )
+                    />,
+                  );
                 }
-                return dots
+                return dots;
               })()}
             </div>
 
@@ -349,7 +398,8 @@ const UniversityLife = () => {
         {/* Page Counter */}
         <div className="text-center mt-4">
           <span className="text-sm text-gray-400">
-            Page {currentPage} of {totalPages} • {lifeExperiences.length} experiences
+            Page {currentPage} of {totalPages} • {lifeExperiences.length}{" "}
+            experiences
           </span>
         </div>
       </div>
@@ -359,8 +409,12 @@ const UniversityLife = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <Users className="h-8 w-8 md:h-12 md:w-12 mx-auto text-mint-400 mb-3 md:mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">PUP Values I've Embraced</h2>
-            <p className="text-base md:text-lg text-gray-300">The institutional values that have shaped my character</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+              PUP Values I've Embraced
+            </h2>
+            <p className="text-base md:text-lg text-gray-300">
+              The institutional values that have shaped my character
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
@@ -391,8 +445,10 @@ const UniversityLife = () => {
               },
               {
                 value: "Spirituality",
-                description: "Recognizing the importance of faith and inner values in shaping character and purpose.",
-                example: "Taking time for reflection, prayer, and expressing gratitude amidst academic challenges.",
+                description:
+                  "Recognizing the importance of faith and inner values in shaping character and purpose.",
+                example:
+                  "Taking time for reflection, prayer, and expressing gratitude amidst academic challenges.",
                 color: "mint",
               },
               {
@@ -416,13 +472,22 @@ const UniversityLife = () => {
                 key={index}
                 className={`bg-gray-800/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl hover:shadow-${item.color}-500/20 transition-all duration-300 border border-gray-700/50 hover:border-${item.color}-400/30 hover:scale-105`}
               >
-                <h3 className={`text-lg md:text-xl font-bold text-${item.color}-300 mb-2 md:mb-3`}>{item.value}</h3>
-                <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed">{item.description}</p>
+                <h3
+                  className={`text-lg md:text-xl font-bold text-${item.color}-300 mb-2 md:mb-3`}
+                >
+                  {item.value}
+                </h3>
+                <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed">
+                  {item.description}
+                </p>
                 <div
                   className={`bg-gradient-to-r from-${item.color}-500/20 to-${item.color}-400/20 p-3 rounded-lg border border-${item.color}-400/30 backdrop-blur-sm`}
                 >
                   <p className="text-xs md:text-sm text-gray-300">
-                    <strong className={`text-${item.color}-300`}>How I apply it:</strong> {item.example}
+                    <strong className={`text-${item.color}-300`}>
+                      How I apply it:
+                    </strong>{" "}
+                    {item.example}
                   </p>
                 </div>
               </div>
@@ -432,7 +497,7 @@ const UniversityLife = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default UniversityLife
+export default UniversityLife;
